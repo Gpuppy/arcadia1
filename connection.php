@@ -1,6 +1,6 @@
 <?php
 
-require "./index.php";  // Assuming this file contains your PDO connection setup
+//require "./index.php";  // Assuming this file contains your PDO connection setup
 require "config/pdo.php";
 require_once "templates/header.php";
 ?>

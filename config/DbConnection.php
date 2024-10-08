@@ -5,6 +5,7 @@ class DbConnection
     const DSN = 'mysql:dbname=arcadia';
     const USER = 'root';
     const PASSWORD = '';
+
     static ? PDO $pdo = null;
 
     public static function getPdo(): PDO

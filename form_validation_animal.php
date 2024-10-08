@@ -2,6 +2,7 @@
 
 require_once "config/pdo.php";
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
     if (!$_POST['name'] ||
     !$_POST['state'] ||
@@ -19,14 +20,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
          :image
  )
     ');
-$query->bindParam('name',$_POST['name']);
-$query->bindParam('state',$_POST['state']);
-$query->bindParam('race',$_POST['race']);
-$query->bindParam('image',$_POST['image']);
+$query->bindParam('name',$_POST['name'],PDO::PARAM_STR);
+$query->bindParam('state',$_POST['state'],PDO::PARAM_STR);
+$query->bindParam('race',$_POST['race'],PDO::PARAM_STR);
+$query->bindParam('image',$_POST['image'],PDO::PARAM_STR);
 
 $query->execute();
 
-    header('Location: index.php');
+$_SESSION ['message_add_animal'] = 'annonce bien ajouté';
+
+    header('Location: animal.php');
     }
 
 }else{

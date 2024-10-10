@@ -2,16 +2,16 @@
 
 require_once 'config/pdo.php';
 require_once 'index.php';
+require_once 'config/DbConnection.php';
 
 
 $animal_id = 1; // Example value for $animal_id (replace this with user input safely)
 //$animal_id = $_GET['$animal_id'];
 
 // Prepare the SQL statement with a placeholder
-$query = $pdo->prepare("SELECT * FROM animal WHERE id = :animal_id");
+//$query = $pdo->prepare("SELECT * FROM animal WHERE id = :animal_id");
 //$query = $pdo->prepare('SELECT * FROM animal');
-//$query = DbConnection::getPdo()->query("SELECT * FROM animal where id = ".$animal_id);
-//$query = $pdo->query("SELECT * FROM animal where id = ".$animal_id);
+$query = DbConnection::getPdo()->query("SELECT * FROM animal where id = ".$animal_id);
 $animal = $query->fetchAll(PDO::FETCH_ASSOC);
 //$animals = get_animals();
 ?>
@@ -20,17 +20,15 @@ $animal = $query->fetchAll(PDO::FETCH_ASSOC);
     <h1>Nos animaux  </h1>
     </div>
     <?php
-    if(isset($_SESSION['message_add_animal'])): ?>
-        <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    <?php echo $_SESSION['message_add_animal'];?>
-                    <?php ?>
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    <?php endif; ?>
+         if(isset($_SESSION['message_add_animal'])): ?>
+    <div class="alert alert-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <?php echo $_SESSION['message_add_animal'];?>
+        <?php unset($_SESSION['message_add_animal']);?>
+    </div>
+    <!--button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button--->
+
+        <?php endif; ?>
+
 <div class="container">
     <div class="row">
        <?php foreach ($animals as $animal): ?>

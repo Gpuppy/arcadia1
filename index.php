@@ -1,15 +1,12 @@
 <?php
 //$pdo = new PDO("mysql:dbname=arcadia;host=localhost;charset=utf8", "root","root");
-
-
-require_once 'config/pdo.php';
+//require_once 'config/pdo.php';
 require_once 'config/DbConnection.php';
 //require_once 'animal.php';
 
 //$animal = new Animal();
 
-DbConnection::getPdo();
-
+//DbConnection::getPdo();
 
 $query = DbConnection::getPdo()->query('SELECT * FROM animal');
 $animals = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -44,14 +41,13 @@ require "templates/header.php";
 
     <main>
         <div class="text-center">
-        <h1>Zoo Arcadia<?php echo $_SESSION['test'] ?></h1></div>
+        <h1>Zoo Arcadia<?php echo $_SESSION['test'] ?? null ?></h1></div>
 
         <?php
         if(isset($_SESSION['message'])): ?>
-            <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <?php echo $_SESSION['message'];?>
+            <div class="alert alert-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <?php echo $_SESSION['message'];?>
+                        <?php unset($_SESSION['message']);?>
                     </div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>

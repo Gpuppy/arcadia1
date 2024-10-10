@@ -1,6 +1,7 @@
 <?php
 
-require_once "config/pdo.php";
+//require_once "config/pdo.php";
+require_once "config/DbConnection.php";
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
@@ -11,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
     ) {echo 'Un des champs est vide. Insertion impossible';
 }else{
 
- $query = $pdo->prepare('INSERT INTO animal
+ $query = DbConnection::getPdo()->prepare('INSERT INTO animal
     (name, state, race_id, image)
  VALUES (
          :name,

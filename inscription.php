@@ -12,14 +12,19 @@ $error = null;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //var_dump($_POST);
-    if(empty($_POST['username']) || empty($_POST['password'])){
+    if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['surname']) || empty($_POST['role_id'])   ){
         $error = "Identifiants invalides";
     }else{
-        $query = DbConnection::getPdo()->prepare('INSERT INTO user(username, password, name, surname, role_id) VALUES (:username, :password, :surname, :rome_id)');
+        $query = DbConnection::getPdo()->prepare('INSERT INTO user(username, password, name, surname, role_id) VALUES (:username, :password, :surname, :role_id)');
         $query->bindParam('username', $_POST['username']);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        echo $password;
+        die;
         $query->bindParam('password', $_POST['password']);
         $query->bindParam('surname', $_POST['surname']);
         $query->bindParam('role_id', $_POST['role_id']);
+
+
     }
 }
 ?>
@@ -40,6 +45,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
                 <input type="password" class="form-control" id="password" name="password" >
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="name" name="name" >
+                </div>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="surname" name="surname" >
+                </div>
+
+                <div class="mb-3">
+                    <label for="role_id" class="form-label">Role</label>
+                    <input type="text" class="form-control" id="role_id" name="role_id" >
                 </div>
 
                 <div class="col-12">

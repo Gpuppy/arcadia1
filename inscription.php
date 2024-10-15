@@ -10,20 +10,28 @@ $title = 'Creer un compte';
 
 $error = null;
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //var_dump($_POST);
-    if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['surname']) || empty($_POST['role_id'])   ){
+    if(!$_POST['username'] || !$_POST['password'] || !$_POST['name'] || !$_POST['surname'] || !$_POST['role_id']   ){
         $error = "Identifiants invalides";
     }else{
-        $query = DbConnection::getPdo()->prepare('INSERT INTO user(username, password, name, surname, role_id) VALUES (:username, :password, :surname, :role_id)');
+        $query = DbConnection::getPdo()->prepare('INSERT INTO user(username, password, name, surname, role_id) VALUES (:username, :password,:name, :surname, :role_id)');
         $query->bindParam('username', $_POST['username']);
+
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        echo $password;
-        die;
-        $query->bindParam('password', $_POST['password']);
+
+        $query->bindParam('password', $password);
+        //echo $password;
+        //die;
+        $query->bindParam('name', $_POST['name']);
         $query->bindParam('surname', $_POST['surname']);
         $query->bindParam('role_id', $_POST['role_id']);
 
+        if(!$query->execute()){
+            $error = 'une erreur est survenue';
+        }else{
+            echo 'success';
+        }
 
     }
 }

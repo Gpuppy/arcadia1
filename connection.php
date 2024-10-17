@@ -2,8 +2,10 @@
 
 //require "./index.php";  // Assuming this file contains your PDO connection setup
 require_once "config/DbConnection.php";
-require_once 'session.php';
+require_once 'config/session.php';
 require_once "templates/header.php";
+
+//echo $_SESSION['user']['username'];
 
 $title = 'Connexion';
 
@@ -30,8 +32,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(!$passwordOk){
                 $error = 'Identifiants invalides';
             }else{
-                //$_SESSION['user'] = $user;
-                header('Location: index.php');
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+                header('Location: admin.php');
             }
         }
 
@@ -46,8 +49,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <?php if ($error): ?>
     <div class="alert alert-warning" role="alert">
-        <?php echo $error; ?>
+        <?php echo $error;
+        ?>
     </div>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['success_message'])):?>
+<div class="alert alert-success" role="alert">
+<?php
+echo $_SESSION['success_message'];
+unset($_SESSION['success_message']);
+?>
+
+
+</div>
 <?php endif; ?>
 
 <form action="" method="post" >

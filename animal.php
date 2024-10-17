@@ -13,6 +13,15 @@ $animal_id = 1; // Example value for $animal_id (replace this with user input sa
 //$query = $pdo->prepare('SELECT * FROM animal');
 $query = DbConnection::getPdo()->query("SELECT * FROM animal where id = ".$animal_id);
 $animal = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$query = DbConnection::getPdo()->query("SELECT image FROM animal");
+$images = $query->fetchAll(PDO::FETCH_ASSOC);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="' . $row['name'] . '" />';
+    }
+    }
 //$animals = get_animals();
 ?>
 <main>
@@ -40,11 +49,12 @@ $animal = $query->fetchAll(PDO::FETCH_ASSOC);
                     <h5 class="card-title"> <?php echo $animal['state'].'race_id'.$animal['race_id'].'abel'.$race['abel'].'image'.$animal['image']?> </h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <!--img src="..." class="img-fluid" alt="..."-->
-
+                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="' . $row['name'] . '" />'; ?>
                     <!--div class="">
                     <img src="<?=$image['image']?>"
                          title="<?=$image['name'] ?>"
                          width='200' height='200'-->
+
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                                                       </div>
             </div>

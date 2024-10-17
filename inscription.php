@@ -2,7 +2,7 @@
 
 // Assuming this file contains your PDO connection setup
 require_once "config/DbConnection.php";
-require_once 'session.php';
+require_once 'config/session.php';
 require_once "templates/header.php";
 
 
@@ -30,7 +30,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(!$query->execute()){
             $error = 'une erreur est survenue';
         }else{
-            echo 'success';
+           $_SESSION['success_message'] = 'Votre compte a bien été créé';
+
+          header('Location: connection.php');
         }
 
     }

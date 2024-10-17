@@ -2,6 +2,9 @@
 //$pdo = new PDO("mysql:dbname=arcadia;host=localhost;charset=utf8", "root","root");
 //require_once 'config/pdo.php';
 require_once 'config/DbConnection.php';
+require_once 'config/session.php';
+
+
 //require_once 'animal.php';
 
 //$animal = new Animal();
@@ -34,11 +37,16 @@ $race = $query->fetchAll(PDO::FETCH_ASSOC);
 //$loader = new Twig\Loader\FilesystemLoader(__DIR__. '/templates');
 //$twig = new Twig\Environment($loader);
 
-
 //require_once 'Controller/HomeController.php';
 require "templates/header.php";
 ?>
+<?php
+$user = '';
+//echo $_SESSION['user']['name'];
 
+//echo $_SESSION['user']['surname'];
+
+?>
     <main>
         <div class="text-center">
         <h1>Zoo Arcadia<?php echo $_SESSION['test'] ?? null ?></h1></div>
@@ -52,6 +60,13 @@ require "templates/header.php";
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
+            <?php endif; ?>
+        <?php if(isset($_SESSION['success_message'])):?>
+        <div class="alert alert-success" role="alert">
+            <?php
+            echo $_SESSION['success_message'];
+            unset($_SESSION['success_message']);
+            ?>
             <?php endif; ?>
 
     </main>

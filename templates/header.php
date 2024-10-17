@@ -34,3 +34,10 @@ $title = 'Connexion';
 
         </ul>
     </div>
+
+     <?php if(isset($_SESSION['user'])): ?>
+                <a href="logout.php">Déconnexion</a>
+            <a href="#">Compte: <?php echo $_SESSION['user']['name']?></a>
+            <?php else: ?>
+            <!--a href="admin.php">Connexion</a-->
+            <?php endif; ?>

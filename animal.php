@@ -1,11 +1,14 @@
 <?php
 
+
+
 require_once 'config/pdo.php';
 require_once 'index.php';
 require_once 'config/DbConnection.php';
 
 
 $animal_id = 1; // Example value for $animal_id (replace this with user input safely)
+$image = 0;
 //$animal_id = $_GET['$animal_id'];
 
 // Prepare the SQL statement with a placeholder
@@ -17,11 +20,7 @@ $animal = $query->fetchAll(PDO::FETCH_ASSOC);
 $query = DbConnection::getPdo()->query("SELECT image FROM animal");
 $images = $query->fetchAll(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="' . $row['name'] . '" />';
-    }
-    }
+
 //$animals = get_animals();
 ?>
 <main>
@@ -49,11 +48,17 @@ if ($result->num_rows > 0) {
                     <h5 class="card-title"> <?php echo $animal['state'].'race_id'.$animal['race_id'].'abel'.$race['abel'].'image'.$animal['image']?> </h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <!--img src="..." class="img-fluid" alt="..."-->
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="' . $row['name'] . '" />'; ?>
+
                     <!--div class="">
-                    <img src="<?=$image['image']?>"
-                         title="<?=$image['name'] ?>"
-                         width='200' height='200'-->
+                    width='200' height='200'-->
+                    <?php
+                    if (!empty($animal['image'])) {
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($animal['image']) . '" alt="Data image' . htmlspecialchars($animal['name']) . '" class="img-fluid" />';
+                    } else {
+                        echo '<p>No image available.</p>';
+                    }
+                    ?>
+
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                                                       </div>

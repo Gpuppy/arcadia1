@@ -1,5 +1,4 @@
 {
-    "name": "gael-computer/arcadia",
     "autoload": {
         "psr-4": {
             "App\\": "src/",

@@ -47,9 +47,57 @@ $user = '';
 //echo $_SESSION['user']['surname'];
 
 ?>
+<body>
     <main>
-        <div class="text-center">
+        <div class="text-center ">
         <h1>Zoo Arcadia<?php echo $_SESSION['test'] ?? null ?></h1></div>
+
+            <!-- Carousel wrapper -->
+
+        <div id="carouselExampleAutoplaying" class="carousel slide row text-center" data-bs-ride="carousel">
+            <div class="carousel-inner center">
+                <div class="carousel-item active ">
+                    <img src="Images/ostrich-8579501_1280.jpg" class="img-fluid " alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images/penguin-6905568_1280.jpg" class="img-fluid " alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images/zebras-4258909_1280.jpg" class="img-fluid " alt="...">
+                </div>
+            </div>
+            <!--button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button--->
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+
+        <style>
+            .carousel-item img{
+                width: 70%; /* Set to your desired width */
+                height: 500px; /* Set to your desired height */
+                object-fit: cover; /* This will crop the image to fit */
+                data-bs-interval="0.1";
+            }
+
+        </style>
+        <!-- Carousel wrapper -->
+
+
 
         <?php
         if(isset($_SESSION['message'])): ?>
@@ -69,9 +117,12 @@ $user = '';
             ?>
             <?php endif; ?>
 
+
+
     </main>
 
 
+</body>
 
 <?php
 require "./templates/footer.php";

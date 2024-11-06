@@ -1,8 +1,14 @@
 <?php
+
 //$pdo = new PDO("mysql:dbname=arcadia;host=localhost;charset=utf8", "root","root");
 //require_once 'config/pdo.php';
 require_once 'config/DbConnection.php';
 require_once 'config/session.php';
+
+//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+//$dotenv->load();
+
+//var_dump(getenv('APP_ENV'));
 
 
 //require_once 'animal.php';

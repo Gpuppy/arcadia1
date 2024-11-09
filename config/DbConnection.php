@@ -5,7 +5,7 @@
 require 'vendor/autoload.php';
 
 //use Dotenv\Dotenv;
-require_once '.env';
+//require_once '.env';
 
 
 
@@ -28,13 +28,14 @@ $pdo = new PDO($dsn, 'username', 'password', $options);*/
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv -> load();
 
-
-$dbhost = $_ENV['DB_HOST'];
-$dbname = $_ENV['DB_NAME'];
-$dbuser = $_ENV['DB_USER'];
-$dbpassword = $_ENV['DB_PASSWORD'];
-
 //var_dump($_ENV);
+
+
+$jawsdbhost = $_ENV['JAWSDB_HOST'];
+$jawsdbname = $_ENV['JAWSDB_NAME'];
+$jawsdbuser = $_ENV['JAWSDB_USER'];
+$jawsdbpassword = $_ENV['JAWSDB_PASSWORD'];
+
 
 
 
@@ -49,7 +50,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
+$conn = mysqli_connect($jawsdbhost, $jawsdbuser, $jawsdbpassword, $jawsdbname);
 
 // Add Database connection to Container
 /*$container->set(PDO::class, function() {
@@ -67,15 +68,54 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
 
 
 try {
-    $pdo = new PDO("mysql:$dbhost;dbname:$dbname", $dbuser, $dbpassword);
+    $pdo = new PDO("mysql:$jawsdbhost;dbname:$jawsdbname", $jawsdbuser, $jawsdbpassword);
     echo " Connexion à la base de données";
 }
 catch (PDOException $e) {
     echo "erreur de connection" .$e->getMessage();
 }
 
-
 class DbConnection
+{
+    private static ?PDO $pdo = null;
+
+    public static function getPdo(): PDO
+    {
+        if (self::$pdo !== null) {
+            return self::$pdo;
+        }
+
+        // If you're running locally, we use the individual components from the .env file
+        $jawsdb_url_string = getenv("JAWSDB_DATABASE_URL");
+
+        if ($jawsdb_url_string !== false) {
+            // Heroku: parse the JAWSDB_DATABASE_URL
+            $jawsdb_url = parse_url($jawsdb_url_string);
+            $jawsdb_server = $jawsdb_url['host'];
+            $jawsdb_username = $jawsdb_url['user'];
+            $jawsdb_password = $jawsdb_url['pass'];
+            $jawsdb_db = ltrim($jawsdb_url['path'], '/');  // Remove the leading slash from the database name
+        } else {
+            // Local Development: Use the local variables from .env
+            $jawsdb_server = $_ENV['JAWSDB_HOST'];
+            $jawsdb_username = $_ENV['JAWSDB_USER'];
+            $jawsdb_password = $_ENV['JAWSDB_PASSWORD'];
+            $jawsdb_db = $_ENV['JAWSDB_NAME'];
+        }
+
+        // Create the DSN (Data Source Name) for MySQL
+        $dsn = "mysql:host=$jawsdb_server;dbname=$jawsdb_db;charset=utf8mb4";
+
+        // Create PDO instance and set error mode
+        self::$pdo = new PDO($dsn, $jawsdb_username, $jawsdb_password);
+        self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        return self::$pdo;
+    }
+}
+
+
+/*class DbConnection
 {
     private static ?PDO $pdo = null;
 
@@ -91,7 +131,7 @@ class DbConnection
             throw new Exception("JAWSDB_DATABASE_URL is not set.");
         }
 
-        $jawsdb_url = parse_url($jawsdb_url_string);
+        //$jawsdb_url = parse_url($jawsdb_url_string);
 
         // Check if parsing was successful
         if (!isset($jawsdb_url["host"])) {
@@ -112,7 +152,7 @@ class DbConnection
 
         return self::$pdo;
     }
-}
+}*/
 
 
 /*class DbConnection

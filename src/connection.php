@@ -1,10 +1,10 @@
 <?php
 
 //require "./index.php";  // Assuming this file contains your PDO connection setup
-require_once "config/DbConnection.php";
-require_once 'config/session.php';
-require_once "templates/header.php";
-require 'vendor/autoload.php';
+require_once __DIR__ . '/../src/config/DbConnection.php';
+require_once __DIR__ . '/../src/config/session.php';
+require_once "../templates/header.php";
+require '../vendor/autoload.php';
 
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 //$dotenv -> load();
@@ -88,7 +88,7 @@ unset($_SESSION['success_message']);
    </body>
 
 <?php
-require_once "templates/footer.php";
+require_once "../templates/footer.php";
 ?>
 
 

@@ -3,6 +3,9 @@
 //use Dotenv\Dotenv as Dotenv;
 
 require 'vendor/autoload.php';
+require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
+//require 'vendor/vlucas/phpdotenv/src/Loader.php';
+require 'vendor/vlucas/phpdotenv/src/Validator.php';
 
 //use Dotenv\Dotenv;
 //require_once '.env';

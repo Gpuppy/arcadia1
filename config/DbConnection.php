@@ -3,13 +3,12 @@
 //use Dotenv\Dotenv as Dotenv;
 
 require 'vendor/autoload.php';
-require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
+//require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
 //require 'vendor/vlucas/phpdotenv/src/Loader.php';
-require 'vendor/vlucas/phpdotenv/src/Validator.php';
+//require 'vendor/vlucas/phpdotenv/src/Validator.php';
+//require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
 
-//use Dotenv\Dotenv;
-//require_once '.env';
-
+use Dotenv\Dotenv;
 
 
 
@@ -28,8 +27,9 @@ $options = [
 $pdo = new PDO($dsn, 'username', 'password', $options);*/
 //$db = DbConnection::getPdo();
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv -> load();
+//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__. '/../');
+$dotenv->load();
 
 //var_dump($_ENV);
 

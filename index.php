@@ -3,10 +3,10 @@
 require 'vendor/autoload.php';
 require_once 'config/DbConnection.php';
 require_once 'config/session.php';
+//use Dotenv\Dotenv;
 
 
-
-//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+//$dotenv = Dotenv::createImmutable(__DIR__);
 //$dotenv->load();
 
 //var_dump(getenv('APP_ENV'));

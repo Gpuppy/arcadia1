@@ -10,7 +10,7 @@ require_once 'templates/header.php';
 
 <div class="container">
     <h1>Ajouter un animal</h1>
-<form action="form_validation_animal.php" method="post">
+<form action="src/form_validation_animal.php" method="post">
     <div class="mb-3">
     <label for="name" class="form-label">Nom</label>
     <input class="form-control" id="name" name="name" placeholder="Nom" required>

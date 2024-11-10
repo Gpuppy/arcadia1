@@ -1,6 +1,10 @@
 <?php
 
-require_once 'config/pdo.php';
+//namespace App\Public;
+
+require __DIR__ . '/../vendor/autoload.php';
+//require_once 'src/config/pdo.php';
+
 
 $title = 'Connexion';
 
@@ -23,20 +27,21 @@ $title = 'Connexion';
 
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
-            <li class="nav-item"><a href="../index.php" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
-            <li class="nav-item"><a href="../Entity/Service.php" class="nav-link link-body-emphasis px-2">Services</a></li>
-            <li class="nav-item"><a href="../Entity/Accomodation.php" class="nav-link link-body-emphasis px-2">Habitats</a></li>
-            <li class="nav-item"><a href="../avis.php" class="nav-link link-body-emphasis px-2">Avis</a></li>
+            <li class="nav-item"><a href="../public/index.php" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
+            <li class="nav-item"><a href="/public/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
+            <li class="nav-item"><a href="../src/Entity/Service.php" class="nav-link link-body-emphasis px-2">Services</a></li>
+            <li class="nav-item"><a href="../src/Entity/Accomodation.php" class="nav-link link-body-emphasis px-2">Habitats</a></li>
+            <li class="nav-item"><a href="../src/avis.php" class="nav-link link-body-emphasis px-2">Avis</a></li>
             <li class="nav-item"><a href="/Entity/Contact.php" class="nav-link link-body-emphasis px-2">Contact</a></li>
         </ul>
         <ul class="nav">
-            <a class="btn btn-success" href="../connection.php" role="button">Admin</a>
+            <a class="btn btn-success" href="../src/connection.php" role="button">Admin</a>
 
         </ul>
     </div>
 
      <?php if(isset($_SESSION['user'])): ?>
-                <a href="logout.php">Déconnexion</a>
+                <a href="../logout.phpphp">Déconnexion</a>
             <a href="#">Compte: <?php echo $_SESSION['user']['name']?></a>
             <?php else: ?>
             <!--a href="admin.php">Connexion</a-->

@@ -1,14 +1,16 @@
 <?php
 
-//use Dotenv\Dotenv as Dotenv;
+//namespace App\config;
 
-require 'vendor/autoload.php';
+//use Dotenv\Dotenv as Dotenv;
+require_once __DIR__ . '/../../vendor/autoload.php';
 //require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
 //require 'vendor/vlucas/phpdotenv/src/Loader.php';
 //require 'vendor/vlucas/phpdotenv/src/Validator.php';
 //require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
 
 use Dotenv\Dotenv;
+
 
 
 
@@ -28,7 +30,8 @@ $pdo = new PDO($dsn, 'username', 'password', $options);*/
 //$db = DbConnection::getPdo();
 
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv = Dotenv::createImmutable(__DIR__. '/../');
+//$dotenv = Dotenv::createImmutable(__DIR__ . '../vendor/arcadia1/');
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 //var_dump($_ENV);

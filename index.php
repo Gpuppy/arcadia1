@@ -1,8 +1,6 @@
 <?php
 
 require 'vendor/autoload.php';
-//$pdo = new PDO("mysql:dbname=arcadia;host=localhost;charset=utf8", "root","root");
-//require_once 'config/pdo.php';
 require_once 'config/DbConnection.php';
 require_once 'config/session.php';
 

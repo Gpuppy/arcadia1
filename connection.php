@@ -6,8 +6,8 @@ require_once 'config/session.php';
 require_once "templates/header.php";
 require 'vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv -> load();
+//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+//$dotenv -> load();
 
 //echo $_SESSION['user']['username'];
 

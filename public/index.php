@@ -139,6 +139,7 @@ $user = '';
 </body>
 
 <?php
+
 require "../templates/footer.php";
 ?>
 

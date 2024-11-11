@@ -246,3 +246,7 @@ class DbConnection
         return self::$pdo;
     }
 }*/
+// Check if the X-Forwarded-Proto header exists (it will be added by Heroku's reverse proxy)
+
+// Log the X-Forwarded-Proto header to the PHP error log for debugging
+

@@ -1,23 +1,17 @@
+# Enable mod_rewrite
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php
 
+# Set base directory if necessary
+RewriteBase /
+
+# Prevent access to .htaccess itself
 RewriteRule ^\.htaccess$ - [F]
 
-RewriteCond %{REQUEST_URI} =""
+# Redirect all non-existent files or directories to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
 
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^.*$ - [NC,L]
-
-#RewriteRule ^public/.*$ /webroot/index.php [NC,L]
-
-
+# Prevent access to app.php if you're using it
 RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule .? - [L]
-
-RewriteRule .? %{ENV:BASE}/app.php [L]
-
-RewriteEngine On RewriteBase / RewriteRule ^index.php$ – [L] RewriteCond %{REQUEST_FILENAME} !-f RewriteCond %{REQUEST_FILENAME} !-d RewriteRule . /index.php [L]
-

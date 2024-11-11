@@ -2,12 +2,12 @@
 
 //namespace App\Public;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 //require_once __DIR__. '/vendor/autoload.php';
 //require 'vendor/autoload.php';
 
-require_once __DIR__ . '/../src/config/DbConnection.php';
-require_once __DIR__ . '/../src/config/session.php';
+require_once __DIR__ . '/src/config/DbConnection.php';
+require_once __DIR__ . '/src/config/session.php';
 //use Dotenv\Dotenv;
 
 
@@ -52,7 +52,7 @@ $race = $query->fetchAll(PDO::FETCH_ASSOC);
 //$twig = new Twig\Environment($loader);
 
 //require_once 'Controller/HomeController.php';
-require "../templates/header.php";
+require "templates/header.php";
 ?>
 <?php
 $user = '';
@@ -71,13 +71,13 @@ $user = '';
         <div id="carouselExampleAutoplaying" class="carousel slide row text-center" data-bs-ride="carousel">
             <div class="carousel-inner center">
                 <div class="carousel-item active ">
-                    <img src="../Images/ostrich-8579501_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/ostrich-8579501_1280.jpg" class="img-fluid " alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../Images/penguin-6905568_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/penguin-6905568_1280.jpg" class="img-fluid " alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../Images/zebras-4258909_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/zebras-4258909_1280.jpg" class="img-fluid " alt="...">
                 </div>
             </div>
             <!--button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -140,7 +140,7 @@ $user = '';
 
 <?php
 
-require "../templates/footer.php";
+require "templates/footer.php";
 ?>
 
 

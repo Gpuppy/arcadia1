@@ -2,7 +2,7 @@
   "name": "arcadia1",
   "version": "1.0.0",
   "description": "it's a zoo in france",
-  "main": "index.php",
+  "main": "web/index.php",
   "scripts": {
     "start": "",
     "dev-server": "encore dev-server",

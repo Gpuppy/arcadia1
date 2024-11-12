@@ -10,10 +10,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 //require 'vendor/vlucas/phpdotenv/src/Dotenv.php';
 
 
-
-
-
-
 //$username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
 //$password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
 
@@ -31,9 +27,10 @@ $pdo = new PDO($dsn, 'username', 'password', $options);*/
 
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 //$dotenv = Dotenv::createImmutable(__DIR__ . '../vendor/arcadia1/');
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 //$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 //$dotenv = Dotenv\Dotenv::createImmutable('C:/xampp/htdocs/arcadia1'); // Absolute path to the root of your project
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 

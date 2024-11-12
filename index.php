@@ -1,10 +1,8 @@
 <?php
 
-//namespace App\Public;
 
-require_once __DIR__ . '/vendor/autoload.php';
-//require_once __DIR__. '/vendor/autoload.php';
-//require 'vendor/autoload.php';
+//require_once __DIR__ . '/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 require_once __DIR__ . '/src/config/DbConnection.php';
 require_once __DIR__ . '/src/config/session.php';

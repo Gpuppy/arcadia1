@@ -27,8 +27,8 @@ $title = 'Connexion';
 
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
-            <li class="nav-item"><a href="../index.php" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
-            <li class="nav-item"><a href="/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
+            <li class="nav-item"><a href="/web/index.php" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
+            <li class="nav-item"><a href="/web/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
             <li class="nav-item"><a href="../src/Entity/Service.php" class="nav-link link-body-emphasis px-2">Services</a></li>
             <li class="nav-item"><a href="../src/Entity/Accomodation.php" class="nav-link link-body-emphasis px-2">Habitats</a></li>
             <li class="nav-item"><a href="../src/avis.php" class="nav-link link-body-emphasis px-2">Avis</a></li>

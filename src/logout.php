@@ -1,7 +1,7 @@
 <?php
 
-require_once 'config/session.php';
-require_once 'config/session.php';
+require_once 'Config/session.php';
+require_once 'Config/session.php';
 
 if(isset($_SESSION['user'])){
     unset($_SESSION['user']);

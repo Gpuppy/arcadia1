@@ -1,8 +1,8 @@
 <?php
 
 // Assuming this file contains your PDO connection setup
-require_once "config/DbConnection.php";
-require_once 'config/session.php';
+require_once "Config/DbConnection.php";
+require_once 'Config/session.php';
 require_once "templates/header.php";
 
 

@@ -2,9 +2,9 @@
 
 
 
-require_once 'config/pdo.php';
+require_once 'Config/pdo.php';
 require_once 'index.php';
-require_once 'config/DbConnection.php';
+require_once 'Config/DbConnection.php';
 
 
 $animal_id = 1; // Example value for $animal_id (replace this with user input safely)

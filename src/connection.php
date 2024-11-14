@@ -1,10 +1,12 @@
 <?php
 
+//require_once __DIR__ . '/../vendor/autoload.php';-
+
 //require "./index.php";  // Assuming this file contains your PDO connection setup
-require_once __DIR__ . '/../src/config/DbConnection.php';
-require_once __DIR__ . '/../src/config/session.php';
+//require_once __DIR__ . '/../src/Config/DbConnection.php';-
+require_once __DIR__ . '/../src/Config/session.php';
 require_once "../templates/header.php";
-require '../vendor/autoload.php';
+//require '../vendor/autoload.php';-
 
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 //$dotenv -> load();

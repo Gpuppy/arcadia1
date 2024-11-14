@@ -2,12 +2,10 @@
 
 namespace App\Config;
 
-use Dotenv\Dotenv;
-//use Dotenv\Dotenv as Dotenv;
+//use Dotenv\Dotenv;
 
-
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
+//$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+//$dotenv->load();
 
 //var_dump($_ENV);
 

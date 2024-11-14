@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Config;
-//require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 //use Dotenv\Dotenv as Dotenv;
@@ -35,7 +34,7 @@ try {
     $pdo = new \PDO("mysql:$jawsdbhost;dbname:$jawsdbname", $jawsdbuser, $jawsdbpassword);
     echo " Connexion à la base de données";
 }
-catch (PDOException $e) {
+catch (\PDOException $e) {
     echo "erreur de connection" .$e->getMessage();
 }
 
@@ -64,7 +63,7 @@ class DbConnection
             $jawsdb_server = $_ENV['JAWSDB_HOST'];
             $jawsdb_username = $_ENV['JAWSDB_USER'];
             $jawsdb_password = $_ENV['JAWSDB_PASSWORD'];
-            $jawsdb_db = $_ENV['JAWSDB_NAME'];
+            $jawsdb_db = $_ENV['JAWSDB_NAME'] ?? 'my_database';
         }
 
         // Create the DSN (Data Source Name) for MySQL
@@ -77,21 +76,6 @@ class DbConnection
         return self::$pdo;
     }
 }
-
-/*class DbConnection {
-    private static $pdo;
-
-    public static function getPdo() {
-        if (self::$pdo === null) {
-            self::$pdo = new \PDO(
-                "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'],
-                $_ENV['DB_USER'],
-                $_ENV['DB_PASSWORD']
-        );
-    }
-            return self::$pdo;
-    }
-}*/
 
 
 

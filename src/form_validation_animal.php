@@ -1,7 +1,7 @@
 <?php
 
 //require_once "config/pdo.php";
-require_once "config/DbConnection.php";
+require_once "Config/DbConnection.php";
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {

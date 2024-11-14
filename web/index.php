@@ -3,7 +3,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 //require_once __DIR__ . '/../src/Config/DbConnection.php';
-require_once __DIR__ . '/../src/Config/session.php';
+//require_once __DIR__ . '/../src/Config/session.php';
 
 use App\Config\DbConnection;
 use Dotenv\Dotenv;
@@ -11,17 +11,13 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__. '/../');
 $dotenv->load();
 
-
-
 //var_dump(getenv('APP_ENV'));
 
 
 //require_once 'animal.php';
 
 
-$db = new DbConnection();  // Should work now
-//DbConnection::getPdo();
-
+$db = new DbConnection();
 
 
 $query = DbConnection::getPdo()->query('SELECT * FROM animal');

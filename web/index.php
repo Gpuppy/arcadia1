@@ -2,11 +2,10 @@
 
 
 require_once __DIR__ . '/../vendor/autoload.php';
-//require '../vendor/autoload.php';
-
 require_once __DIR__ . '/../src/Config/DbConnection.php';
 require_once __DIR__ . '/../src/Config/session.php';
 
+use App\Config\DbConnection;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__. '/../');
@@ -20,7 +19,7 @@ $dotenv->load();
 //require_once 'animal.php';
 
 
-
+$db = new DbConnection();  // Should work now
 //DbConnection::getPdo();
 
 

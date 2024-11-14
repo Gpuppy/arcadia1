@@ -1,6 +1,6 @@
 <?php
 
-//namespace App\Src\Config;
+namespace App\Config;
 //require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Dotenv\Dotenv;
@@ -10,18 +10,12 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
-
-
 //var_dump($_ENV);
-
 
 $jawsdbhost = $_ENV['JAWSDB_HOST'];
 $jawsdbname = $_ENV['JAWSDB_NAME'];
 $jawsdbuser = $_ENV['JAWSDB_USER'];
 $jawsdbpassword = $_ENV['JAWSDB_PASSWORD'];
-
-
-
 
 //Get Heroku JawsDB connection information
 $url = parse_url(getenv("JAWSDB_DATABASE_URL"));
@@ -36,23 +30,9 @@ $query_builder = TRUE;
 
 $conn = mysqli_connect($jawsdbhost, $jawsdbuser, $jawsdbpassword, $jawsdbname);
 
-// Add Database connection to Container
-/*$container->set(PDO::class, function() {
-    $dburl = parse_url(getenv('DATABASE_URL') ?: throw new Exception('no DATABASE_URL'));
-    return new PDO(sprintf(
-        "pgsql:host=%s;port=%s;dbname=%s;user=%s;password=%s",
-        $dburl['host'],
-        $dburl['port'],
-        ltrim($dburl['path'], '/'), // URL path is the DB name, must remove leading slash
-        $dburl['user'],
-        $dburl['pass'],
-    ));
-});*/
-
-
 
 try {
-    $pdo = new PDO("mysql:$jawsdbhost;dbname:$jawsdbname", $jawsdbuser, $jawsdbpassword);
+    $pdo = new \PDO("mysql:$jawsdbhost;dbname:$jawsdbname", $jawsdbuser, $jawsdbpassword);
     echo " Connexion à la base de données";
 }
 catch (PDOException $e) {
@@ -61,9 +41,9 @@ catch (PDOException $e) {
 
 class DbConnection
 {
-    private static ?PDO $pdo = null;
+    private static ?\PDO $pdo = null;
 
-    public static function getPdo(): PDO
+    public static function getPdo(): \PDO
     {
         if (self::$pdo !== null) {
             return self::$pdo;
@@ -91,12 +71,27 @@ class DbConnection
         $dsn = "mysql:host=$jawsdb_server;dbname=$jawsdb_db;charset=utf8mb4";
 
         // Create PDO instance and set error mode
-        self::$pdo = new PDO($dsn, $jawsdb_username, $jawsdb_password);
-        self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        self::$pdo = new \PDO($dsn, $jawsdb_username, $jawsdb_password);
+        self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         return self::$pdo;
     }
 }
+
+/*class DbConnection {
+    private static $pdo;
+
+    public static function getPdo() {
+        if (self::$pdo === null) {
+            self::$pdo = new \PDO(
+                "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'],
+                $_ENV['DB_USER'],
+                $_ENV['DB_PASSWORD']
+        );
+    }
+            return self::$pdo;
+    }
+}*/
 
 
 

@@ -9,24 +9,27 @@ namespace App\Config;
 
 //var_dump($_ENV);
 
-$jawsdbhost = $_ENV['JAWSDB_HOST'];
+/*$jawsdbhost = $_ENV['JAWSDB_HOST'];
 $jawsdbname = $_ENV['JAWSDB_NAME'];
 $jawsdbuser = $_ENV['JAWSDB_USER'];
 $jawsdbpassword = $_ENV['JAWSDB_PASSWORD'];
 
 //Get Heroku JawsDB connection information
 $url = parse_url(getenv("JAWSDB_DATABASE_URL"));
-$jawsdb_server = ["host"];
-$jawsdb_username = ["user"];
-$jawsdb_password = ["pass"];
-$jawsdb_db = ["path"];
+$jawsdb_server = $url["host"];
+$jawsdb_username = $url["user"];
+$jawsdb_password = $url["pass"];
+$jawsdb_db = ltrim($url["path"],'/');
 
 $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
 
-$conn = mysqli_connect($jawsdbhost, $jawsdbuser, $jawsdbpassword, $jawsdbname);
+$conn = mysqli_connect($jawsdb_server, $jawsdb_username, $jawsdb_password, $jawsdb_db);
 
+if(!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}*/
 
 //Get Heroku ClearDB connection information
 /*$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -42,7 +45,7 @@ $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $c
 
 
 
-try {
+/*try {
     $pdo = new \PDO("mysql:$jawsdbhost;dbname:$jawsdbname", $jawsdbuser, $jawsdbpassword);
     echo " Connexion à la base de données";
 }
@@ -87,7 +90,53 @@ class DbConnection
 
         return self::$pdo;
     }
+}*/
+
+class DbConnection
+{
+    private static ?\PDO $pdo = null;
+
+    public static function getPdo(): \PDO
+    {
+        if (self::$pdo !== null) {
+            return self::$pdo;
+        }
+
+        // Check for JAWSDB_DATABASE_URL in the environment
+        $jawsdb_url_string = getenv("JAWSDB_DATABASE_URL");
+
+        if ($jawsdb_url_string) {
+            // Parse JAWSDB_DATABASE_URL
+            $jawsdb_url = parse_url($jawsdb_url_string);
+            $jawsdb_server = $jawsdb_url['host'];
+            $jawsdb_username = $jawsdb_url['user'];
+            $jawsdb_password = $jawsdb_url['pass'];
+            $jawsdb_db = ltrim($jawsdb_url['path'], '/');
+        } else {
+            // Local Development: Use fallback credentials
+            $jawsdb_server = $_ENV['JAWSDB_HOST'] ?? '127.0.0.1';
+            $jawsdb_username = $_ENV['JAWSDB_USER'] ?? 'root';
+            $jawsdb_password = $_ENV['JAWSDB_PASSWORD'] ?? '';
+            $jawsdb_db = $_ENV['JAWSDB_NAME'] ?? 'my_local_database';
+        }
+
+        if (!$jawsdb_server || !$jawsdb_username || !$jawsdb_db) {
+            throw new \Exception("Database credentials are missing.");
+        }
+
+        $dsn = "mysql:host=$jawsdb_server;dbname=$jawsdb_db;charset=utf8mb4";
+
+        try {
+            self::$pdo = new \PDO($dsn, $jawsdb_username, $jawsdb_password);
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+            throw new \Exception("Database connection failed: " . $e->getMessage());
+        }
+
+        return self::$pdo;
+    }
 }
+
 
 
 

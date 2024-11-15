@@ -8,10 +8,19 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\Config\DbConnection;
 use Dotenv\Dotenv;
 
-if(getenv('APPLICATION_ENV') !== 'production') { /* or staging */
+/*if(getenv('APPLICATION_ENV') !== 'production') { /* or staging */
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->load();
-}
+//}
+
+
+// Check if the application is running locally
+/*if (getenv('APP_ENV') === 'local') {
+    // Load .env file only in local environment
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}*/
+
 
 //$dotenv = Dotenv::createImmutable(__DIR__ );
 //$dotenv->load();

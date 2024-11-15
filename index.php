@@ -1,12 +1,13 @@
 <?php
 
+use App\Config\DbConnection;
+use Dotenv\Dotenv;
 
 require_once __DIR__ . '/vendor/autoload.php';
 //require_once __DIR__ . '/../src/Config/DbConnection.php';
 //require_once __DIR__ . '/../src/Config/session.php';
 
-use App\Config\DbConnection;
-use Dotenv\Dotenv;
+
 
 //$dotenv = Dotenv::createImmutable(__DIR__);
 //$dotenv->load();

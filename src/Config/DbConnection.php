@@ -114,20 +114,23 @@ class DbConnection
             $jawsdb_db = ltrim($jawsdb_url['path'], '/');
         } else {
             // Local Development: Use fallback credentials
-            $jawsdb_server = $_ENV['JAWSDB_HOST'] ?? '127.0.0.1';
-            $jawsdb_username = $_ENV['JAWSDB_USER'] ?? 'root';
-            $jawsdb_password = $_ENV['JAWSDB_PASSWORD'] ?? '';
-            $jawsdb_db = $_ENV['JAWSDB_NAME'] ?? 'my_local_database';
+            $servername = "127.0.0.1";//$jawsdb_server = $_ENV['JAWSDB_HOST'] ?? '127.0.0.1';
+            $password = "root";//$jawsdb_password = $_ENV['JAWSDB_PASSWORD'] ?? '';
+            $username = "root";//$jawsdb_username = $_ENV['JAWSDB_USER'] ?? 'root';
+            $dbname= "arcadia";
+
+            //$jawsdb_db = $_ENV['JAWSDB_NAME'] ?? 'my_local_database';
         }
 
-        if (!$jawsdb_server || !$jawsdb_username || !$jawsdb_db) {
+        //if (!$jawsdb_server || !$jawsdb_username || !$jawsdb_db)
+        if(!$servername || !$username || !$dbname) {
             throw new \Exception("Database credentials are missing.");
         }
 
-        $dsn = "mysql:host=$jawsdb_server;dbname=$jawsdb_db;charset=utf8mb4";
+        $dsn = "mysql:host=$servername;dbname=$dbname;charset=utf8mb4";
 
         try {
-            self::$pdo = new \PDO($dsn, $jawsdb_username, $jawsdb_password);
+            self::$pdo = new \PDO($dsn, $username, $password);
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             throw new \Exception("Database connection failed: " . $e->getMessage());

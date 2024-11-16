@@ -103,17 +103,17 @@ class DbConnection
         }
 
         // Check for JAWSDB_DATABASE_URL in the environment
-        $jawsdb_url_string = getenv("JAWSDB_DATABASE_URL");
+        //$jawsdb_url_string = getenv("JAWSDB_DATABASE_URL");
 
-        if ($jawsdb_url_string) {
-            // Parse JAWSDB_DATABASE_URL
-            $jawsdb_url = parse_url($jawsdb_url_string);
-            $host = $jawsdb_url['host']?? null;
-            $username = $jawsdb_url['user']?? null;
-            $password = $jawsdb_url['pass']?? null;
-            $dbname = ltrim($jawsdb_url['path']?? '', '/');
-            $port = $jawsdb_url['port'] ?? 3306;
-        } else {
+        //if ($jawsdb_url_string) {
+        // Parse JAWSDB_DATABASE_URL
+        //$jawsdb_url = parse_url($jawsdb_url_string);
+        //$host = $jawsdb_url['host']?? null;
+        //$username = $jawsdb_url['user']?? null;
+        //$password = $jawsdb_url['pass']?? null;
+        //$dbname = ltrim($jawsdb_url['path']?? '', '/');
+        //$port = $jawsdb_url['port'] ?? 3306;
+        /*} else {
             // Local Development: Use fallback credentials
             $host = "127.0.0.1";//$jawsdb_server = $_ENV['JAWSDB_HOST'] ?? '127.0.0.1';
             $password = "root";//$jawsdb_password = $_ENV['JAWSDB_PASSWORD'] ?? '';
@@ -137,12 +137,30 @@ class DbConnection
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             throw new \Exception("Database connection failed: " . $e->getMessage());
+        }*/
+
+        $host = "nba02whlntki5w2p.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+        $user = "tvr7jf7pjfcxahch";
+        $password = "k4jwc1moepkum601";
+        $dbname = "y0dtxwzjt63cmuoj";
+        $port = "3306";
+
+        // Create DSN (Data Source Name) for PDO
+        $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
+
+        try {
+            // Initialize the PDO instance and store it in the static property
+            self::$pdo = new \PDO($dsn, $user, $password);
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            // If connection fails, throw an exception
+            throw new \Exception("Database connection failed: " . $e->getMessage());
         }
 
         return self::$pdo;
     }
 }
-
 
 
 

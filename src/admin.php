@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Config/DbConnection.php';
-require "./templates/header.php";
+require "../templates/header.php";
 require_once 'Config/session.php';
 
 
@@ -71,4 +71,4 @@ echo $_SESSION['user']['surname'];
 
 
 <?php
-require "./templates/footer.php";
+require "../templates/footer.php";

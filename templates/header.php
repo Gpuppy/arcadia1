@@ -41,7 +41,7 @@ $title = 'Connexion';
     </div>
 
      <?php if(isset($_SESSION['user'])): ?>
-                <a href="../logout.phpphp">Déconnexion</a>
+                <a href="/src/logout.php">Déconnexion</a>
             <a href="#">Compte: <?php echo $_SESSION['user']['name']?></a>
             <?php else: ?>
             <!--a href="admin.php">Connexion</a-->

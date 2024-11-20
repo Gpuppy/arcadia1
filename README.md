@@ -11,8 +11,11 @@ Prérequis
 Afin de pouvoir exécuter l'application sur votre poste en local, vous devez d'aborder installer les dépendances suivantes :
 
 *Git & GitHub
+
 *Php 8.1+
+
 *Serveur XAMPP ou autre
+
 *Un gestionnaire de base de base de données MySQL, PhpMyAdmin pour ma part
 
 Installation

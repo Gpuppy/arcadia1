@@ -7,6 +7,28 @@ C'est une application développé avec Php 8.2
 
 version en ligne : https://arcadia1986-b80281f570ec.herokuapp.com
 
+🚀 Fonctionnalités
+Interface utilisateur interactive avec des pages dédiées pour :
+La liste des animaux (nom, description, état, photo, etc.).
+Les habitats du zoo.
+La gestion des avis clients.
+Partie administrateur :
+CRUD complet (Créer, Lire, Mettre à jour, Supprimer) pour les animaux et leurs habitats.
+Modération des avis clients pour garantir un contenu approprié.
+Responsive design grâce à Bootstrap.
+Sécurité renforcée grâce à l'utilisation de PDO (PHP Data Objects) pour les requêtes SQL préparées.
+
+🛠️ Technologies utilisées
+Langages et Frameworks
+PHP (Vanilla) : Développement côté serveur.
+Bootstrap : Mise en page responsive et design.
+Outils et Plateformes
+phpMyAdmin : Gestion des bases de données MySQL.
+Git & GitHub : Versionnement et gestion du projet.
+PHPStorm : Environnement de développement intégré (IDE).
+XAMPP : Serveur local pour tester le projet (Apache, MySQL, PHP).
+
+
 Prérequis
 Afin de pouvoir exécuter l'application sur votre poste en local, vous devez d'aborder installer les dépendances suivantes :
 

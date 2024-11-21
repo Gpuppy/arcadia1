@@ -1,11 +1,13 @@
 <?php
 
+use App\Config\DbConnection;
 
 
-require_once 'Config/pdo.php';
-require_once 'index.php';
-require_once 'Config/DbConnection.php';
+//require_once 'Config/pdo.php';
+require_once __DIR__ . '/../src/Config/DbConnection.php';
+require_once "../templates/header.php";
 
+$db = new DbConnection();
 
 $animal_id = 1; // Example value for $animal_id (replace this with user input safely)
 $image = 0;
@@ -14,18 +16,20 @@ $image = 0;
 // Prepare the SQL statement with a placeholder
 //$query = $pdo->prepare("SELECT * FROM animal WHERE id = :animal_id");
 //$query = $pdo->prepare('SELECT * FROM animal');
-$query = DbConnection::getPdo()->query("SELECT * FROM animal where id = ".$animal_id);
-$animal = $query->fetchAll(PDO::FETCH_ASSOC);
+//$query = DbConnection::getPdo()->query("SELECT * FROM animal");
+//$animals = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$query = DbConnection::getPdo()->query("SELECT image FROM animal");
-$images = $query->fetchAll(PDO::FETCH_ASSOC);
+//$query = DbConnection::getPdo()->query("SELECT image FROM animal");
+//$images = $query->fetchAll(PDO::FETCH_ASSOC);
+//$query = DbConnection::getPdo()->query("SELECT name, state, race_id, image FROM animal");
+$query = DbConnection::getPdo()->query("SELECT * FROM animal");
+$animals = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
-//$animals = get_animals();
 ?>
 <main>
     <div class="text-center mb-5">
-    <h1>Nos animaux  </h1>
+    <h1>Nos animaux </h1>
     </div>
     <?php
          if(isset($_SESSION['message_add_animal'])): ?>
@@ -45,7 +49,7 @@ $images = $query->fetchAll(PDO::FETCH_ASSOC);
             <h4>Animaux: <?php echo $animal['name']; ?> </h4>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> <?php echo $animal['state'].'race_id'.$animal['race_id'].'abel'.$race['abel'].'image'.$animal['image']?> </h5>
+                    <h5 class="card-title"> <?php echo htmlspecialchars($animal['state']) . ' race_id: ' . htmlspecialchars($animal['race_id']) . ' abel image: ' . htmlspecialchars($animal['image']);?> </h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <!--img src="..." class="img-fluid" alt="..."-->
 
@@ -53,14 +57,14 @@ $images = $query->fetchAll(PDO::FETCH_ASSOC);
                     width='200' height='200'-->
                     <?php
                     if (!empty($animal['image'])) {
-                        echo '<img src="data:image/jpeg;base64,' . base64_encode($animal['image']) . '" alt="Data image' . htmlspecialchars($animal['name']) . '" class="img-fluid" />';
+                        echo '<img src="data:image/' . base64_encode($animal['image']) . '" alt="Data image' . htmlspecialchars($animal['name']) . '" class="img-fluid" />';
                     } else {
                         echo '<p>No image available.</p>';
                     }
                     ?>
 
 
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="#" class="btn btn-primary">Description</a>
                                                       </div>
             </div>
         </div>
@@ -72,4 +76,4 @@ $images = $query->fetchAll(PDO::FETCH_ASSOC);
 </main>
 
 <?php
-require "./templates/footer.php";
+require "../templates/footer.php";

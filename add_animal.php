@@ -1,7 +1,7 @@
 <?php
 
 //require_once 'config/pdo.php';
-use App\Src\Config\DbConnection;
+use Src\Config\DbConnection;
 
 
 $title = 'Add an animal';

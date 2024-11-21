@@ -1,7 +1,11 @@
 <?php
 
-//require_once "config/pdo.php";
+use App\Src\Config\DbConnection;
+
 require_once "Config/DbConnection.php";
+require_once "Config/Pdo.php";
+
+$title = 'Add an animal';
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {

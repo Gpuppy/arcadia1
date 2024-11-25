@@ -1,6 +1,8 @@
 <?php
 
-use Src\Config\DbConnection;
+use App\Config\DbConnection;
+
+$db = new DbConnection();
 
 
 $title = 'Add accommodation';

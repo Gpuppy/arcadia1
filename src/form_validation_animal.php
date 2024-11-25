@@ -1,6 +1,6 @@
 <?php
 
-use App\Src\Config\DbConnection;
+use App\Config\DbConnection;
 
 require_once "Config/DbConnection.php";
 //require_once "Config/Pdo.php";

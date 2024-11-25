@@ -3,7 +3,7 @@
 use App\Src\Config\DbConnection;
 
 require_once "Config/DbConnection.php";
-require_once "Config/Pdo.php";
+//require_once "Config/Pdo.php";
 
 $title = 'Add an animal';
 

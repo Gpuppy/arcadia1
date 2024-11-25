@@ -49,7 +49,7 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
             <h4>Animaux: <?php echo $animal['name']; ?> </h4>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> <?php echo htmlspecialchars($animal['state']) . ' race_id: ' . htmlspecialchars($animal['race_id']) . ' abel image: ' . htmlspecialchars($animal['image']);?> </h5>
+                    <h5 class="card-title"> <?php echo htmlspecialchars($animal['state'] ?? '') . ' race_id: ' . htmlspecialchars($animal['race_id'] ?? '') . ' abel image: ' . htmlspecialchars($animal['image'] ?? '');?> </h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <!--img src="..." class="img-fluid" alt="..."-->
 
@@ -57,7 +57,7 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
                     width='200' height='200'-->
                     <?php
                     if (!empty($animal['image'])) {
-                        echo '<img src="data:image/' . base64_encode($animal['image']) . '" alt="Data image' . htmlspecialchars($animal['name']) . '" class="img-fluid" />';
+                        echo '<img src="data:image/' . base64_encode($animal['image']?? '') . '" alt="Data image' . htmlspecialchars($animal['name'] ?? '') . '" class="img-fluid" />';
                     } else {
                         echo '<p>No image available.</p>';
                     }

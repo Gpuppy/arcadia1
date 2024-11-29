@@ -10,6 +10,7 @@ require_once "../templates/header.php";
 $db = new DbConnection();
 
 $animal_id = 1; // Example value for $animal_id (replace this with user input safely)
+$animal = ''; // Example value for $animal_id (replace this with user input safely)
 $image = 0;
 //$animal_id = $_GET['$animal_id'];
 
@@ -24,6 +25,12 @@ $image = 0;
 //$query = DbConnection::getPdo()->query("SELECT name, state, race_id, image FROM animal");
 $query = DbConnection::getPdo()->query("SELECT * FROM animal");
 $animals = $query->fetchAll(PDO::FETCH_ASSOC);
+
+//$query = DbConnection::getPdo()->query('SELECT image FROM animal');
+//$query->execute(['animal' => $animal]);
+$imageData = $query->fetchColumn();
+
+
 
 
 ?>
@@ -49,20 +56,55 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
             <h4>Animaux: <?php echo $animal['name']; ?> </h4>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> <?php echo htmlspecialchars($animal['state'] ?? '') . ' race_id: ' . htmlspecialchars($animal['race_id'] ?? '') . ' abel image: ' . htmlspecialchars($animal['image'] ?? '');?> </h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <!--h5 class="card-title"> <-!!?php echo htmlspecialchars($animal['state'] ?? '') . ' race_id: ' . htmlspecialchars($animal['race_id'] ?? '') . ' abel image: ' . htmlspecialchars($animal['image'] ?? '');?> </h5-->
+
+                    <!--p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
                     <!--img src="..." class="img-fluid" alt="..."-->
 
                     <!--div class="">
                     width='200' height='200'-->
-                    <?php
+                    <!--?php
                     if (!empty($animal['image'])) {
                         echo '<img src="data:image/' . base64_encode($animal['image']?? '') . '" alt="Data image' . htmlspecialchars($animal['name'] ?? '') . '" class="img-fluid" />';
                     } else {
                         echo '<p>No image available.</p>';
                     }
-                    ?>
+                    ?-->
+                    <?php
 
+                    $imagePath = 'uploads/' . $animal['image'];
+                    if (file_exists($imagePath)) {
+                        echo "<div>";
+                        echo "<h4>{$animal['race_id']}</h4>";
+                        /*echo "<h3>{$animal['name']}</h3>";*/
+                        echo "<img src='{$imagePath}' alt='{$animal['name']}' style='width:200px;'>";
+                        echo "<p>Etat: {$animal['state']}</p>";
+                        echo "</div>";
+                    } else {
+                        echo "<p>Image for {$animal['name']} not found.</p>";
+                    }
+
+                    /*if (!empty($animal['image'])) {
+                    $encodedImage = base64_encode($animal['image']);
+                    if ($encodedImage !== false) {
+                    echo '<img src="data:image/jpeg;base64,' . $encodedImage . '" alt="Image of ' . htmlspecialchars($animal['name']) . '" />';
+                    } else {
+                    echo '<p>Invalid image data.</p>';
+                    }
+                    } else {
+                    echo '<p>No image available.</p>';
+                    }
+
+                    if ($imageData) {
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" />';
+                    } else {
+                        echo 'Image not found.';
+                    }*/
+
+                    
+
+
+                    ?>
 
                     <a href="#" class="btn btn-primary">Description</a>
                                                       </div>

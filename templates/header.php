@@ -42,7 +42,7 @@ $title = 'Connexion';
             <li class="nav-item"><a href="/Entity/Contact.php" class="nav-link link-body-emphasis px-2 text-light">Contact</a></li>
         </ul>
         <ul class="nav">
-            <a class="btn btn-success" href="../src/connection.php" role="button">Admin</a>
+            <a class="btn btn-success" href="../src/admin.php" role="button">Admin</a>
 
         </ul>
     </div>

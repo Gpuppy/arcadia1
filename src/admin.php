@@ -4,11 +4,23 @@ require_once 'Config/DbConnection.php';
 require "../templates/header.php";
 require_once 'Config/session.php';
 
+//session_start();
+
+if (!isset($_SESSION['user'])) {
+    header('Location: connection.php'); // Redirect to login if not authenticated
+    exit;
+}
+
 
 $user = '';
 
+//$admin = '';
+
 echo $_SESSION['user']['name'];
 echo $_SESSION['user']['surname'];
+
+//echo $_SESSION['admin']['name'];
+//echo $_SESSION['admin']['surname'];
 
 //print_r($_SESSION['user'])
 

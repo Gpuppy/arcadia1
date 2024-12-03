@@ -23,11 +23,13 @@ $image = 0;
 //$query = DbConnection::getPdo()->query("SELECT image FROM animal");
 //$images = $query->fetchAll(PDO::FETCH_ASSOC);
 //$query = DbConnection::getPdo()->query("SELECT name, state, race_id, image FROM animal");
-$query = DbConnection::getPdo()->query("SELECT * FROM animal");
+$query = DbConnection::getPdo()->query("SELECT * FROM animal
+                                                 JOIN race ON race.id = animal.race_id ");
 $animals = $query->fetchAll(PDO::FETCH_ASSOC);
 
-//$query = DbConnection::getPdo()->query('SELECT image FROM animal');
-//$query->execute(['animal' => $animal]);
+//SELECT animal.*, race.abel as race_abel FROM animal
+//JOIN race ON race.id = animal.category_id;
+
 $imageData = $query->fetchColumn();
 
 
@@ -53,30 +55,17 @@ $imageData = $query->fetchColumn();
        <?php foreach ($animals as $animal): ?>
 
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <h4>Animaux: <?php echo $animal['name']; ?> </h4>
+            <h4>Nom: <?php echo $animal['name']; ?> </h4>
             <div class="card">
                 <div class="card-body">
-                    <!--h5 class="card-title"> <-!!?php echo htmlspecialchars($animal['state'] ?? '') . ' race_id: ' . htmlspecialchars($animal['race_id'] ?? '') . ' abel image: ' . htmlspecialchars($animal['image'] ?? '');?> </h5-->
 
-                    <!--p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
-                    <!--img src="..." class="img-fluid" alt="..."-->
-
-                    <!--div class="">
-                    width='200' height='200'-->
-                    <!--?php
-                    if (!empty($animal['image'])) {
-                        echo '<img src="data:image/' . base64_encode($animal['image']?? '') . '" alt="Data image' . htmlspecialchars($animal['name'] ?? '') . '" class="img-fluid" />';
-                    } else {
-                        echo '<p>No image available.</p>';
-                    }
-                    ?-->
                     <?php
 
                     $imagePath = 'uploads/' . $animal['image'];
                     if (file_exists($imagePath)) {
                         echo "<div>";
-                        echo "<h4>{$animal['race_id']}</h4>";
-                        /*echo "<h3>{$animal['name']}</h3>";*/
+                        /*echo "<h4>{$animal['race_id']}</h4>";*/
+                        echo "<h3>Race:{$animal['abel']}</h3>";
                         echo "<img src='{$imagePath}' alt='{$animal['name']}' style='width:200px;'>";
                         echo "<p>Etat: {$animal['state']}</p>";
                         echo "</div>";

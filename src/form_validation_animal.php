@@ -65,4 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
     }
 } else {
     echo 'Impossible d\'arriver sur cette page en GET.';
+
+    $query = DbConnection::getPdo()->prepare(
+        'UPDATE INTO animal(name, state, race_id, image) VALUES (:name, :state, :race, :image)'
+    );
 }

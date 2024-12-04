@@ -65,7 +65,7 @@ $imageData = $query->fetchColumn();
                     if (file_exists($imagePath)) {
                         echo "<div>";
                         /*echo "<h4>{$animal['race_id']}</h4>";*/
-                        echo "<h3>Race:{$animal['abel']}</h3>";
+                        echo "<h4>Race : {$animal['abel']}</h4>";
                         echo "<img src='{$imagePath}' alt='{$animal['name']}' style='width:200px;'>";
                         echo "<p>Etat: {$animal['state']}</p>";
                         echo "</div>";

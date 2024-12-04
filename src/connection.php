@@ -20,7 +20,7 @@ require_once "../templates/header.php";
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 //$dotenv -> load();
 
-//echo $_SESSION['user']['username'];
+echo $_SESSION['user'] ['username'];
 
 $title = 'Connexion';
 

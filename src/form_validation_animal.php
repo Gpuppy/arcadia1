@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
 
         // Redirection ou message de succès
         $_SESSION['message_add_animal'] = 'Animal bien ajouté.';
-        header('Location: animal.php');
+        header('Location: animal_list.php');
         exit;
 
     } catch (Exception $e) {
@@ -67,23 +67,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
     echo 'Impossible d\'arriver sur cette page en GET.';
 
     //Update
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // Ensure $id is set (e.g., via $_POST or $_GET)
             if (empty($_POST['id'])) {
                 throw new Exception('ID is required for updating.');
             }
 
-            $id = $_POST['id']; // Use proper validation
+            $id = $_GET['id']; // Use proper validation
 
             $query = DbConnection::getPdo()->prepare(
                 'UPDATE animal SET name= :name, state= :state, race_id = :race, image = :image WHERE id= :id '
             );
 
-            $query->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
-            $query->bindParam(':state', $_POST['state'], PDO::PARAM_STR);
-            $query->bindParam(':race', $_POST['race'], PDO::PARAM_INT);
-            $query->bindParam(':image', $_POST['$uniqueFileName'], PDO::PARAM_STR);
+            $query->bindParam(':name', $_GET['name'], PDO::PARAM_STR);
+            $query->bindParam(':state', $_GET['state'], PDO::PARAM_STR);
+            $query->bindParam(':race', $_GET['race'], PDO::PARAM_INT);
+            $query->bindParam(':image', $_GET['$uniqueFileName'], PDO::PARAM_STR);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
 
             $query->execute();
@@ -97,11 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             echo 'Erreur : ' . $e->getMessage();
         }
 
-    }
+    }*/
 
     //Delete
-    $animai_id = $_GET['$animal_id'];
+    /*$animai_id = $_GET['$animal_id'];
     $query = DbConnection::getPdo()->prepare('DELETE FROM animal where id = '.$animal_id);
     $animal = $query->fetch(PDO::FETCH_ASSOC);
-    header('Location:animal.php');
+    header('Location:animal.php');*/
 }

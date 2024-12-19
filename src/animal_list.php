@@ -27,6 +27,7 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
             <th>Name</th>
             <th>Race</th>
             <th>State</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -38,8 +39,8 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
                <td><?=$animal['abel']?></td>
                <td><?=$animal['state']?></td>
                <td>
-                   <a class='btn btn-primary btn-sm' href='/edit.php'>Edit</a>
-                   <a class='btn btn-danger btn-sm' href='/delete.php'>Delete</a>
+                   <a class='btn btn-primary btn-sm' href='/edit.php?id=<?= $animal['id'] ?>'>Edit</a>
+                   <a class='btn btn-danger btn-sm' href='/delete.php?id=<?= $animal['id'] ?>'>Delete</a>
                </td>
            </tr>
        <?php endforeach; ?>
@@ -62,6 +63,9 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
     </body>
+
+
+<a class="btn btn-success" href="/add_animal.php">Ajouter un animal</a>
 
 <?php
 require_once "../templates/footer.php";

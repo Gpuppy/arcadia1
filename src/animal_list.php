@@ -52,7 +52,7 @@ JOIN orders ON users.id = orders.user_id;*/
                <td><?=$animal['image']?></td>
                <td>
                    <a class='btn btn-primary btn-sm' href='/edit.php?id=<?= $animal['animal_id'] ?>'>Edit</a>
-                   <a class='btn btn-danger btn-sm' href='/delete.php?id=<?= $animal['id'] ?>'>Delete</a>
+                   <a class='btn btn-danger btn-sm' href='/delete.php?id=<?= $animal['animal_id'] ?>'>Delete</a>
                </td>
            </tr>
        <?php endforeach; ?>

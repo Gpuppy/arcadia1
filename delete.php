@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once "src/config/DbConnection.php";
+
+include 'Src/Config/DbConnection.php';
 
 use App\Config\DbConnection;
 

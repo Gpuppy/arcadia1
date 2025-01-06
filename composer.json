@@ -15,7 +15,9 @@
         "vlucas/phpdotenv": "^5.6",
         "ext-json": "*",
         "ext-pdo": "*",
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "mongodb/mongodb": "^1.20",
+        "ext-mongodb": "*"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"

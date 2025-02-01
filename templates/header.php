@@ -36,10 +36,10 @@ $title = 'Connexion';
         <ul class="nav me-auto bg-success">
             <li class="nav-item"><a href="/index.php" class="nav-link link-body-emphasis px-2 active text-light " aria-current="page">Accueil</a></li>
              <!--li class="nav-item"><a href="/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li-->
-            <li class="nav-item"><a href="../src/animal.php" class="nav-link link-body-emphasis px-2  text-light">Animals</a></li>
+            <li class="nav-item"><a href="../src/animal.php" class="nav-link link-body-emphasis px-2  text-light">Animaux</a></li>
             <li class="nav-item"><a href="../src/accommodation.php" class="nav-link link-body-emphasis px-2 text-light">Habitats</a></li>
             <li class="nav-item"><a href="../src/avis.php" class="nav-link link-body-emphasis px-2 text-light">Avis</a></li>
-            <li class="nav-item"><a href="/Entity/Contact.php" class="nav-link link-body-emphasis px-2 text-light">Contact</a></li>
+            <li class="nav-item"><a href="/src/Contact.php" class="nav-link link-body-emphasis px-2 text-light">Contact</a></li>
         </ul>
         <ul class="nav">
             <a class="btn btn-success" href="../src/admin.php" role="button">Admin</a>

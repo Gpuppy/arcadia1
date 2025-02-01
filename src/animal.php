@@ -9,20 +9,12 @@ require_once "../templates/header.php";
 
 $db = new DbConnection();
 
-$animal_id = 1; // Example value for $animal_id (replace this with user input safely)
-$animal = ''; // Example value for $animal_id (replace this with user input safely)
+$animal_id = 1;
+$animal = '';
 $image = 0;
-//$animal_id = $_GET['$animal_id'];
 
-// Prepare the SQL statement with a placeholder
-//$query = $pdo->prepare("SELECT * FROM animal WHERE id = :animal_id");
-//$query = $pdo->prepare('SELECT * FROM animal');
-//$query = DbConnection::getPdo()->query("SELECT * FROM animal");
-//$animals = $query->fetchAll(PDO::FETCH_ASSOC);
 
-//$query = DbConnection::getPdo()->query("SELECT image FROM animal");
-//$images = $query->fetchAll(PDO::FETCH_ASSOC);
-//$query = DbConnection::getPdo()->query("SELECT name, state, race_id, image FROM animal");
+
 $query = DbConnection::getPdo()->query("SELECT * FROM animal
                                                  JOIN race ON race.id = animal.race_id ");
 $animals = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +23,6 @@ $animals = $query->fetchAll(PDO::FETCH_ASSOC);
 //JOIN race ON race.id = animal.category_id;
 
 $imageData = $query->fetchColumn();
-
 
 
 

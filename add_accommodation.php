@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php';
 use App\Config\DbConnection;
 
 $db = new DbConnection();
@@ -13,7 +14,7 @@ require_once 'templates/header.php';
 
     <div class="container">
         <h1>Ajouter un habitat</h1>
-        <form action="src/form_validation_accommodation.php" method="post">
+        <form action="src/form_validation_accommodation.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom</label>
                 <input class="form-control" id="name" name="name" placeholder="Nom" required>
@@ -21,18 +22,18 @@ require_once 'templates/header.php';
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <input class="form-control" id="description" name="description" placeholder="Description">
+                <input class="form-control" id="description" name="description" placeholder="">
             </div>
 
 
             <div class="mb-3">
-                <label for="review" class="form-label">Accommodation_Review</label>
-                <input class="form-control" id="accommodation" name=accommodation placeholder="Accommodation_Review">
+                <label for="review" class="form-label">Avis</label>
+                <input class="form-control" id="accomodation" name=accommodation_review placeholder="">
             </div>
 
             <div class="mb-3">
-                <label for="animal" class="form-label"></label>
-                <input class="form-control" id="accommodation" name=animal_id placeholder="Animal_id">
+                <label for="animal" class="form-label">Animal</label>
+                <input class="form-control" id="animal_id" name=animal_id placeholder="id">
             </div>
 
 

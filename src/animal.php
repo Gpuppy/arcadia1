@@ -86,7 +86,7 @@ $imageData = $query->fetchColumn();
 
                     ?>
 
-                    <a href="#" class="btn btn-primary">Description</a>
+                    <a href="" class="btn btn-primary">Description</a>
                                                       </div>
             </div>
         </div>

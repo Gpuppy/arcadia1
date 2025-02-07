@@ -18,6 +18,12 @@ $image = 0;
 $query = DbConnection::getPdo()->query("SELECT * FROM accommodation");
 $accommodations = $query->fetchAll(PDO::FETCH_ASSOC);
 
+if (isset($accommodation['image']) && !empty($accommodation['image'])) {
+    $image = $accommodation['image'];
+} else {
+    $image = "default.jpg"; // Image par défaut si aucune image n'est définie
+}
+
 
 ?>
     <main>
@@ -39,25 +45,41 @@ $accommodations = $query->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($accommodations as $accommodation): ?>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <h4>Habitats: <?php echo $accommodation['name']; ?> </h4>
+                        <h4>Habitats: <?php echo htmlspecialchars($accommodation['name']) ; ?> </h4>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"> <?php echo htmlspecialchars($accommodation['description']) . ' animal_id: ' . htmlspecialchars($accommodation['animal_id']) . ' abel image: ' . htmlspecialchars($accommodation['image']);?> </h5>
+                                <h5 class="card-title">
+                                    <?php echo htmlspecialchars($accommodation['description']);?>
+                                    <br>Animal ID: <?php echo htmlspecialchars($accommodation['animal_id']);?>
+                                </h5>
+
+                                <pre><?php print_r($accommodation); ?></pre>
+                                <!-- Handling image display -->
+                                <?php
+                                if (!empty($accommodation['image'])) {
+                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($accommodation['image']) . '" 
+                                           alt="Image de ' . htmlspecialchars($accommodation['name']) . '" 
+                                           class="img-fluid" />';
+                                } else {
+                                    echo '<p>No image available.</p>';
+
+                                }
+
+                                ?>
+                                
+
+
+                                }
+
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                 <!--img src="..." class="img-fluid" alt="..."-->
 
                                 <!--div class="">
                                 width='200' height='200'-->
-                                <?php
-                                if (!empty($accommodation['image'])) {
-                                    echo '<img src="data:image/' . base64_encode($accommodation['image']) . '" alt="Data image' . htmlspecialchars($accommodation['name']) . '" class="img-fluid" />';
-                                } else {
-                                    echo '<p>No image available.</p>';
-                                }
-                                ?>
 
 
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                                <a href="#" class="btn btn-primary">Description</a>
                             </div>
                         </div>
                     </div>

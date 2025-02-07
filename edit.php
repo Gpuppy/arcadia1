@@ -20,27 +20,7 @@ if (!$id) {
     die('Error: Animal ID is required.');
 }
 
-/*if (!$id) {
-    die('Error: Animal ID is missing.');
-}
-echo 'id: ' . htmlspecialchars($id, ENT_QUOTES, 'UTF-8') . '<br>';*/
 
-
-
-// Fetch existing animal data for the form
-/*try{
-    $query = DbConnection::getPdo()->prepare('SELECT * FROM animal WHERE id = :id');
-    $query->bindParam(':id',$id, PDO::PARAM_INT);
-    $query->execute();
-    $animal = $query->fetch(PDO::FETCH_ASSOC);
-
-    if(!$animal){
-        throw new Exception('Animal not found.');
-    }
-} catch (Exception $e){
-    die('Error: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8'));
-}
-*/
 $query = DbConnection::getPdo()->prepare(
         'SELECT animal.id, animal.name, animal.state, animal.race_id, animal.image, race.abel AS race_abel
         FROM animal

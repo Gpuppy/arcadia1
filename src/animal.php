@@ -47,8 +47,8 @@ $imageData = $query->fetchColumn();
 
         <div class="col-sm-6 mb-3 mb-sm-0">
             <h4>Nom: <?php echo $animal['name']; ?> </h4>
-            <div class="card">
-                <div class="card-body">
+            <div class="card h-100">
+                <div class="card-body " >
 
                     <?php
 
@@ -57,36 +57,25 @@ $imageData = $query->fetchColumn();
                         echo "<div>";
                         /*echo "<h4>{$animal['race_id']}</h4>";*/
                         echo "<h4>Race : {$animal['abel']}</h4>";
-                        echo "<img src='{$imagePath}' alt='{$animal['name']}' style='width:200px;'>";
+                        echo "<img src='{$imagePath}' alt='{$animal['name']} ' class='img-fluid' style='width: 300px; height: 250px; object-fit: cover;'>";
                         echo "<p>Etat: {$animal['state']}</p>";
                         echo "</div>";
                     } else {
                         echo "<p>Image for {$animal['name']} not found.</p>";
                     }
 
-                    /*if (!empty($animal['image'])) {
-                    $encodedImage = base64_encode($animal['image']);
-                    if ($encodedImage !== false) {
-                    echo '<img src="data:image/jpeg;base64,' . $encodedImage . '" alt="Image of ' . htmlspecialchars($animal['name']) . '" />';
-                    } else {
-                    echo '<p>Invalid image data.</p>';
-                    }
-                    } else {
-                    echo '<p>No image available.</p>';
-                    }
-
-                    if ($imageData) {
-                        echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" />';
-                    } else {
-                        echo 'Image not found.';
-                    }*/
-
-                    
-
-
                     ?>
 
-                    <a href="" class="btn btn-primary">Description</a>
+                    <a href="#"  class="btn btn-primary">Description</a>
+
+                    <div id="modal-layer"></div>
+                    <div id="modal">
+                        <header>
+                    <a href="#" class="btn btn-danger">Close</a>
+                        </header>
+                    </div>
+
+
                                                       </div>
             </div>
         </div>

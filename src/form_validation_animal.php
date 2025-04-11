@@ -9,7 +9,7 @@ $title = 'Add an animal';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
     try {
         // Vérification des champs du formulaire
-        if (empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race'])) {
+        if (empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race']) || empty($_POST['description'])) {
             throw new Exception('Un des champs est vide. Insertion impossible.');
         }
 
@@ -44,12 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
 
         // Insertion dans la base de données
         $query = DbConnection::getPdo()->prepare(
-            'INSERT INTO animal (name, state, race_id, image) VALUES (:name, :state, :race, :image)'
+            'INSERT INTO animal (name, state, race_id, description, image) VALUES (:name, :state, :race, :description,:image)'
         );
 
         $query->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
         $query->bindParam(':state', $_POST['state'], PDO::PARAM_STR);
         $query->bindParam(':race', $_POST['race'], PDO::PARAM_STR);
+        $query->bindParam(':description', $_POST['description'], PDO::PARAM_STR);
         $query->bindParam(':image', $uniqueFileName, PDO::PARAM_STR); // Utilisation du nom unique généré
 
         $query->execute();

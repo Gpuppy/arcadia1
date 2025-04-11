@@ -7,6 +7,8 @@ use App\Config\DbConnection;
 require_once __DIR__ . '/../src/Config/DbConnection.php';
 require_once "../templates/header.php";
 
+
+
 $db = new DbConnection();
 
 $animal_id = 1;
@@ -27,7 +29,31 @@ $imageData = $query->fetchColumn();
 
 
 ?>
-<main>
+    <!--script src="/js/app.js"></script-->
+    <script src="/public/js/app.js"></script>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+
+
+    <main>
     <div class="text-center mb-5">
     <h1>Nos animaux </h1>
     </div>
@@ -66,25 +92,25 @@ $imageData = $query->fetchColumn();
 
                     ?>
 
-                    <a href="#"  class="btn btn-primary">Description</a>
+                   <!----MODAL------->
+                    <button class="open-modal btn btn-success" data-description="<?= htmlspecialchars($animal['description']) ?>">Description</button>
 
-                    <div id="modal-layer"></div>
-                    <div id="modal">
-                        <header>
-                    <a href="#" class="btn btn-danger">Close</a>
-                        </header>
-                    </div>
-
-
-                                                      </div>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>
     </div>
-    <!--?php foreach ($animals as $animal): ?-->
-    <!--?php echo $animals['id'].'' ?-->
-    <!--?php endforeach; ?-->
+</div>
+
+    <div id="animal-modal" class="modal"  aria-modal="true" tabindex="-1">
+        <div class="modal-content">
+            <h2>Description</h2>
+            <p id="modal-description">Loading...</p>
+            <button class="close-modal">Fermer</button>
+        </div>
+    </div>
 </main>
+
 
 <?php
 require "../templates/footer.php";

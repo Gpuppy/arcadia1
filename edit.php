@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Ensure $id is set (e.g., via $_POST or $_GET)
-        if (empty($_POST['id']) ||  empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race_id']) /*|| empty($_POST['image'])*/) {
+        if (empty($_POST['id']) ||  empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race_id']) || empty($_POST['description'])/*|| empty($_POST['image'])*/) {
                         throw new Exception('All fields are required.');
         }
 
@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST["name"];
         $state = $_POST["state"];
         $race_id = $_POST["race_id"];
+        $race_id = $_POST["description"];
         $image = $_FILES["image"]["name"] ?? null;
 
         // Process uploaded image if provided
@@ -77,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   name= :name, 
                   state= :state, 
                   race_id = :race_id, 
+                  description = :description, 
                   image = :image 
               WHERE id= :id '
 
@@ -85,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query->bindParam(':name', $name, PDO::PARAM_STR);
     $query->bindParam(':state', $state, PDO::PARAM_STR);
     $query->bindParam(':race_id', $race_id, PDO::PARAM_INT);
+    $query->bindParam(':description', $description, PDO::PARAM_INT);
     $query->bindParam(':image', $uniqueFileName, PDO::PARAM_STR);
     $query->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -155,6 +158,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
+            <div class="mb-3">
+                <label for="description" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="description" name="description" value="<?php echo ($animal['description'] ?? ''); ?>" placeholder="Descripion" required>
+            </div>
 
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>

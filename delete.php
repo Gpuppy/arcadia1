@@ -17,7 +17,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 
 $query = DbConnection::getPdo()->prepare(
-    'SELECT animal.id, animal.name, animal.state, animal.race_id, animal.image, race.abel AS race_abel
+    'SELECT animal.id, animal.name, animal.state, animal.race_id,animal.description, animal.image, race.abel AS race_abel
         FROM animal
         JOIN race ON animal.race_id = race.id
         WHERE animal.id = :id'
@@ -101,6 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endforeach; ?>
                 </select>
 
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" value="<?php echo ($animal['description'] ?? ''); ?>" placeholder=">Description" >
             </div>
 
 

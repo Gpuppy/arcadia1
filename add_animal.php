@@ -42,6 +42,11 @@ require_once 'templates/header.php';
     </div>
 
     <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input class="form-control" id="description" name="description" placeholder="Description">
+    </div>
+
+    <div class="mb-3">
         <label for="image" class="form-label">Image</label>
         <input type="file" id="image" name="image" accept="image/*">
 

@@ -1,0 +1,1 @@
+(self.webpackChunkarcadia1=self.webpackChunkarcadia1||[]).push([[524],{228:()=>{console.log("hello")}},a=>{var e;e=228,a(a.s=e)}]);

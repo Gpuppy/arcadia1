@@ -4,19 +4,22 @@
   "description": "it's a zoo in france",
   "main": "index.php",
   "scripts": {
-    "start": "",
-    "dev-server": "encore dev-server",
-    "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "start": ""
+      },
   "author": "gpuppy",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.3.3"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^5.1.0"
-  }
+   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gpuppy/arcadia1.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Gpuppy/arcadia1/issues"
+  },
+  "homepage": "https://github.com/Gpuppy/arcadia1#readme"
 }

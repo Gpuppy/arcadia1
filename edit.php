@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST["name"];
         $state = $_POST["state"];
         $race_id = $_POST["race_id"];
-        $race_id = $_POST["description"];
+        $description = $_POST["description"];
         $image = $_FILES["image"]["name"] ?? null;
 
         // Process uploaded image if provided
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">Nom</label>
+                <label for="description" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" name="description" value="<?php echo ($animal['description'] ?? ''); ?>" placeholder="Descripion" required>
             </div>
 

@@ -72,19 +72,19 @@ $imageData = $query->fetchColumn();
        <?php foreach ($animals as $animal): ?>
 
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <h4>Nom: <?php echo $animal['name']; ?> </h4>
+
             <div class="card h-100">
                 <div class="card-body " >
-
+                    <h4>Nom: <?php echo $animal['name']; ?> </h4>
                     <?php
 
                     $imagePath = 'uploads/' . $animal['image'];
                     if (file_exists($imagePath)) {
                         echo "<div>";
                         /*echo "<h4>{$animal['race_id']}</h4>";*/
-                        echo "<h4>Race : {$animal['abel']}</h4>";
+                        echo "<h5>Race : {$animal['abel']}</h5>";
                         echo "<img src='{$imagePath}' alt='{$animal['name']} ' class='img-fluid' style='width: 300px; height: 250px; object-fit: cover;'>";
-                        echo "<p>Etat: {$animal['state']}</p>";
+                        echo "<h6>Etat: {$animal['state']}</h6>";
                         echo "</div>";
                     } else {
                         echo "<p>Image for {$animal['name']} not found.</p>";

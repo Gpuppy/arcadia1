@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail->Port = 587;
 
     $mail->Username = 'gadetreg@gmail.com';
-    $mail->Password = 'nnqyhfhguxelwplc';
+    $mail->Password = 'password ';
 
     $mail->setFrom('gadetreg@gmail.com', 'Arcadia');
     $mail->addAddress("gadetreg@gmail.com","Gael");

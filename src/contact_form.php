@@ -1,15 +1,48 @@
 <?php
 
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $emailFrom = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+require_once __DIR__ . '/../vendor/autoload.php';
 
-    $mailTo = "gael.adam@hotmail.com";
-    $headers = "From: ".$emailFrom;
-    $txt = "You have received an email from ".$name.".\n\n". $message;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    email($mailTo, $subject, $txt, $headers);
-    header("Location:contact.php?emailsent");
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+
+    $name = $_POST['name']?? '';
+    $emailFrom = $_POST['email']?? '';
+    $subject = $_POST['subject']?? '';
+    $message = $_POST['message']?? '';
+
+    $mail = new PHPMailer(true);
+
+    try {
+    $mail->isSMTP();
+    $mail->SMTPAuth = true;
+
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->Username = 'gadetreg@gmail.com';
+    $mail->Password = 'nnqyhfhguxelwplc';
+
+    $mail->setFrom('gadetreg@gmail.com', 'Arcadia');
+    $mail->addAddress("gadetreg@gmail.com","Gael");
+    $mail->addReplyTo($emailFrom, $name);  // ← the user's email
+
+    $mail->Subject = $subject;
+    $mail->Body = "Message from $name ($emailFrom):\n\n$message";
+
+    $mail->send();
+
+    //echo "Votre email a bien été envoyé :)";
+    } catch (Exception $e) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    }
 }
+
+
+
+
+

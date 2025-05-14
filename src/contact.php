@@ -12,8 +12,10 @@ $db = new DbConnection();
 
 
 ?>
+
 <body>
-<form class="contact-form" action="contact.php" method="post">
+
+<form class="contact-form" action="contact_form.php" method="post">
     <div class="row">
         Name: <input type="text" name="name" value="">
         Email: <input type="text" name="email" value="">

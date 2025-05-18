@@ -6,42 +6,64 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = $_POST['name'] ?? '';
+    $emailFrom = $_POST['email'] ?? '';
+    $subject = $_POST['subject'] ?? '';
+    $message = $_POST['message'] ?? '';
 
+    $errors = [];
+    $old = $_POST;
 
-    $name = $_POST['name']?? '';
-    $emailFrom = $_POST['email']?? '';
-    $subject = $_POST['subject']?? '';
-    $message = $_POST['message']?? '';
+    if (empty($name)) {
+        $errors [] = "Le nom est necessaire. ";
+        }
 
-    $mail = new PHPMailer(true);
+    if (empty($emailFrom) || !filter_var($emailFrom, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Un email valide est requis.";
+    }
 
-    try {
-    $mail->isSMTP();
-    $mail->SMTPAuth = true;
+    if (empty($subject)) {
+        $errors[] = "le sujet est requis.";
+    }
 
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+    if (empty($message)) {
+        $errors[] = "le message ne peux étre vide.";
+    }
 
-    $mail->Username = 'gadetreg@gmail.com';
-    $mail->Password = 'nnqyhfhguxelwplc';
+    if (empty($errors)) {
 
-    $mail->setFrom('gadetreg@gmail.com', 'Arcadia');
-    $mail->addAddress("gadetreg@gmail.com","Gael");
-    $mail->addReplyTo($emailFrom, $name);  // ← the user's email
+        $mail = new PHPMailer(true);
 
-    $mail->Subject = $subject;
-    $mail->Body = "Message from $name ($emailFrom):\n\n$message";
+        try {
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
 
-    $mail->send();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-    //echo "Votre email a bien été envoyé :)";
-    } catch (Exception $e) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+            $mail->Username = 'gadetreg@gmail.com';
+            $mail->Password = 'nnqyhfhguxelwplc';
+
+            $mail->setFrom('gadetreg@gmail.com', 'Arcadia');
+            $mail->addAddress("gadetreg@gmail.com", "Gael");
+            $mail->addReplyTo($emailFrom, $name);  // ← the user's email
+
+            $mail->Subject = $subject;
+            $mail->Body = "Message from $name ($emailFrom):\n\n$message";
+
+            $mail->send();
+            echo header('Location:email_sent.php');
+        } catch (Exception $e) {
+            echo "Erreur lors de l'envoi: {$mail->ErrorInfo}";
+        }
+    } else {
+        // Show validation errors
+        echo implode("<br>", $errors);
     }
 }
-
 
 
 

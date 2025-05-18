@@ -9,21 +9,36 @@ require_once "../templates/header.php";
 
 $db = new DbConnection();
 //$version = '';
-
+$errors = $_SESSION['errors'] ?? [];
+$old = $_SESSION['old'] ?? [];
+session_unset();
 
 ?>
 
 <body>
 
+<div class="mb-3">
 <form class="contact-form" action="contact_form.php" method="post">
+    <h3>Formulaire de Contact</h3>
     <div class="row">
-        Name: <input type="text" name="name" value="">
-        Email: <input type="text" name="email" value="">
-        Sujet: <input type="text" name="subject" value="">
-        Message: <textarea name="message" rows="5" ></textarea>
-        <button type="submit" class="btn btn-success">Envoyer</button>
-    </div>
- </form>
+        Nom :<input type="text" name="name" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['name'] ?? '') ?>">
+        <div class="invalid-feedback"><?= $errors['name'] ?? '' ?>Name</div>
+
+        Email:<input type="text" name="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['email'] ?? '') ?>">
+        <div class="invalid-feedback"><?= $errors['email'] ?? '' ?></div>
+
+        Sujet:<input type="text" name="subject" class="form-control <?= isset($errors['subject']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['subject'] ?? '') ?>">
+        <div class="invalid-feedback"><?= $errors['subject'] ?? '' ?></div>
+
+        Message:<input type="text" name="message" class="form-control <?= isset($errors['message']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['message'] ?? '') ?>">
+        <div class="invalid-feedback "><?= $errors['message'] ?? '' ?></div>
+
+        <div class="button">
+        <button type="submit" class="btn btn-success btn-sm mt-3">Envoyer</button>
+        </div>
+
+
+</form>
 </body>
 
 <?php

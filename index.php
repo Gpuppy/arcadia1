@@ -71,32 +71,7 @@ $user = '';
     <!--script src="public/js/app.js"></script-->
 
 </header>
-<!----Header-------->
-<!--nav class="py-5 bg-body-secondary border-bottom ">
 
-    <div class="container ">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-                    <div class="d-flex col-lg-4 mb-2 ">
-                        <img src="../Images/Arcadia-2.png" class="img" height="60px"  alt="Arcadia">
-                    </div>
-                </a>
-                <ul class="nav me-auto bg-success">
-                    <li class="nav-item"><a href="/index.php" class="nav-link link-body-emphasis px-2 active text-light " aria-current="page">Accueil</a></li>
-                    <li class="nav-item"><a href="/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li>
-                    <li class="nav-item"><a href="./src/animal.php" class="nav-link link-body-emphasis px-2  text-light">Animals</a></li>
-                    <li class="nav-item"><a href="/accommodation.php" class="nav-link link-body-emphasis px-2 text-light">Habitats</a></li>
-                    <li class="nav-item"><a href="../src/avis.php" class="nav-link link-body-emphasis px-2 text-light">Avis</a></li>
-                    <li class="nav-item"><a href="/Entity/Contact.php" class="nav-link link-body-emphasis px-2 text-light">Contact</a></li>
-                </ul>
-                <ul class="nav">
-                    <a class="btn btn-success" href="../src/connection.php" role="button">Admin</a>
-
-                </ul>
-        </div>
-    </div--->
-        <!----EndHeader-------->
     <main>
         <div class="text-center">
         <h1>Zoo Arcadia<?php echo $_SESSION['test'] ?? null ?></h1></div>
@@ -131,6 +106,132 @@ $user = '';
             <h3>Présentation</h3>
         <h5>Arcadia est un zoo situé en France près de la forêt de Brocéliande, en bretagne depuis 1960. Ils possèdent tout un panel d’animaux, réparti par habitat (savane, jungle, marais) et font extrêmement attention à leurs santés.
             Les animaux sont heureux et cela fait la fierté de son directeur</h5>
+        </div>
+
+        <div class="text">
+            <Témoignage>
+                <?php
+                $testimonials = [
+                    [
+                        "text" => "Phasellus sem justo, <a href='#'>pretium eu lacus ut</a>, aliquet diam. Morbi sit amet dolor eu erat ornare viverra.",
+                        "author" => "Luna John",
+                        "role" => "Marketer",
+                        "image" => "https://randomuser.me/api/portraits/women/44.jpg"
+                    ],
+                    [
+                        "text" => "Phasellus sem justo, <a href='#'>pretium eu lacus ut</a>, aliquet diam. Morbi sit amet dolor eu erat ornare viverra.",
+                        "author" => "Mark Smith",
+                        "role" => "Designer",
+                        "image" => "https://randomuser.me/api/portraits/men/46.jpg"
+                    ],
+                    [
+                        "text" => "Phasellus sem justo, <a href='#'>pretium eu lacus ut</a>, aliquet diam. Morbi sit amet dolor eu erat ornare viverra.",
+                        "author" => "Michael Wilson",
+                        "role" => "SEO",
+                        "image" => "https://randomuser.me/api/portraits/men/33.jpg"
+                    ],
+                    [
+                        "text" => "Phasellus sem justo, <a href='#'>pretium eu lacus ut</a>, aliquet diam. Morbi sit amet dolor eu erat ornare viverra.",
+                        "author" => "Luke Reeves",
+                        "role" => "Sales",
+                        "image" => "https://randomuser.me/api/portraits/women/55.jpg"
+                    ]
+                ];
+                ?>
+
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Témoignages</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            font-family: Arial, sans-serif;
+                        }
+
+                        .testimonials-section {
+                            background-color: #e9e9e9;
+                            padding: 60px 20px;
+                            text-align: center;
+                        }
+
+                        .testimonials-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            gap: 30px;
+                            margin-top: 40px;
+                        }
+
+                        .testimonial-card {
+                            background: white;
+                            padding: 30px 20px;
+                            border-radius: 15px;
+                            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                            width: 100%;
+                            max-width: 400px;
+                            text-align: center;
+                        }
+
+                        .testimonial-card img {
+                            width: 80px;
+                            height: 80px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                            margin-bottom: 15px;
+                        }
+
+                        .testimonial-card p {
+                            font-size: 15px;
+                            margin-bottom: 15px;
+                            color: #333;
+                        }
+
+                        .testimonial-card strong {
+                            display: block;
+                            font-weight: 600;
+                            color: #111;
+                        }
+
+                        @media (min-width: 768px) {
+                            .testimonial-card {
+                                width: calc(50% - 30px);
+                            }
+                        }
+
+                        a {
+                            color: #3a63d1;
+                            text-decoration: none;
+                        }
+
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                    </style>
+                </head>
+                <body>
+
+                <div class="testimonials-section">
+                    <h2>Témoignages</h2>
+                    <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+                    <div class="testimonials-container">
+                        <?php foreach ($testimonials as $t): ?>
+                            <div class="testimonial-card">
+                                <img src="<?= htmlspecialchars($t['image']) ?>" alt="<?= htmlspecialchars($t['author']) ?>">
+                                <p><?= $t['text'] ?></p>
+                                <strong><?= htmlspecialchars($t['author']) ?> - <?= htmlspecialchars($t['role']) ?></strong>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                </body>
+                </html>
++
+            </Témoignage>
+
         </div>
 
 

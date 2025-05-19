@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+$name = $_SESSION['success_name'] ?? '';
+session_unset();
 use App\Config\DbConnection;
 
 
@@ -15,7 +17,7 @@ $db = new DbConnection();
 ?>
 
     <body>
-    <h3>Votre email a bien été envoyé :) </h3>
+    <h3>Merci <?= htmlspecialchars($name) ?>, votre message a été envoyé avec succès !</h3>
     </body>
 
 

@@ -2,8 +2,6 @@
 session_start();
 use App\Config\DbConnection;
 
-
-//require_once 'Config/pdo.php';
 require_once __DIR__ . '/../src/Config/DbConnection.php';
 require_once "../templates/header.php";
 
@@ -22,7 +20,7 @@ session_unset();
     <h3>Formulaire de Contact</h3>
     <div class="row">
         Nom :<input type="text" name="name" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['name'] ?? '') ?>">
-        <div class="invalid-feedback"><?= $errors['name'] ?? '' ?>Name</div>
+        <div class="invalid-feedback"><?= $errors['name'] ?? '' ?></div>
 
         Email:<input type="text" name="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['email'] ?? '') ?>">
         <div class="invalid-feedback"><?= $errors['email'] ?? '' ?></div>
@@ -30,7 +28,7 @@ session_unset();
         Sujet:<input type="text" name="subject" class="form-control <?= isset($errors['subject']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['subject'] ?? '') ?>">
         <div class="invalid-feedback"><?= $errors['subject'] ?? '' ?></div>
 
-        Message:<input type="text" name="message" class="form-control <?= isset($errors['message']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['message'] ?? '') ?>">
+        Message:<textarea name="message" rows="5" class="form-control <?= isset($errors['message']) ? 'is-invalid' : '' ?>" value="<?= htmlspecialchars($old['message'] ?? '') ?>"></textarea>
         <div class="invalid-feedback "><?= $errors['message'] ?? '' ?></div>
 
         <div class="button">

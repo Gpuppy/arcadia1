@@ -37,7 +37,7 @@ $title = 'Connexion';
             <li class="nav-item"><a href="/index.php" class="nav-link link-body-emphasis px-2 active text-light " aria-current="page">Accueil</a></li>
              <!--li class="nav-item"><a href="/index.php?page=ajout_animal" class="nav-link link-body-emphasis px-2 active" aria-current="page">Accueil</a></li-->
             <li class="nav-item"><a href="../src/animal.php" class="nav-link link-body-emphasis px-2  text-light">Animaux</a></li>
-            <li class="nav-item"><a href="../src/accommodation.php" class="nav-link link-body-emphasis px-2 text-light">Habitats</a></li>
+            <!--li class="nav-item"><a href="../src/accommodation.php" class="nav-link link-body-emphasis px-2 text-light">Habitats</a></-li-->
             <li class="nav-item"><a href="../src/avis.php" class="nav-link link-body-emphasis px-2 text-light">Avis</a></li>
             <li class="nav-item"><a href="/src/contact.php" class="nav-link link-body-emphasis px-2 text-light">Contact</a></li>
         </ul>

@@ -13,9 +13,6 @@ $old = $_SESSION['old'] ?? [];
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-//var_dump($_ENV['SMTP_USERNAME'] ?? 'not set', getenv('SMTP_USERNAME'));
-//var_dump($_ENV('SMTP_USERNAME'), $_ENV('SMTP_PASSWORD'));
-
 
 session_unset();
 

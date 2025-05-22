@@ -4,9 +4,14 @@ session_start();
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+//var_dump($_ENV['SMTP_USERNAME'] ?? 'not set', getenv('SMTP_USERNAME'));
+//exit;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 
 
 /*if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -53,8 +58,10 @@ $message = $_POST['message'] ?? '';
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
-            $mail->Username = 'gadetreg@gmail.com';
-            $mail->Password = 'nnqyhfhguxelwplc';
+            $mail->Username = $_ENV['SMTP_USERNAME'];
+            $mail->Password = $_ENV['SMTP_PASSWORD'];
+            //$mail->Username = 'gadetreg@gmail.com';
+            //$mail->Password = 'nnqyhfhguxelwplc';
             $mail->setFrom('gadetreg@gmail.com', 'Arcadia');
             $mail->addAddress("gadetreg@gmail.com", "Gael");
             $mail->addReplyTo($email, $name);  // ← the user's email

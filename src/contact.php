@@ -10,8 +10,13 @@ $db = new DbConnection();
 $errors = $_SESSION['errors'] ?? [];
 $old = $_SESSION['old'] ?? [];
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+/*$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();*/
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
+
 
 
 session_unset();

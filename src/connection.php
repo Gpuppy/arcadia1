@@ -2,25 +2,19 @@
 
 
 use App\Config\DbConnection;  // Ensure the correct namespace is used
-//require_once __DIR__ . '/../vendor/autoload.php';-
 
-//require "./index.php";  // Assuming this file contains your PDO connection setup
+require '../vendor/autoload.php';
 require_once __DIR__ . '/../src/Config/DbConnection.php';
-//require_once __DIR__ . '/Config/DbConnection.php';  // Adjust the path as necessary
-
-
-// Now you can use DbConnection
-$db = new DbConnection();
-
-
 require_once __DIR__ . '/../src/Config/session.php';
 require_once "../templates/header.php";
-//require '../vendor/autoload.php';-
+
+$db = new DbConnection();
+
 
 //$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 //$dotenv -> load();
 
-echo $_SESSION['user'] ['username'];
+//echo $_SESSION['user'] ['username'];
 
 $title = 'Connexion';
 

@@ -5,14 +5,14 @@
   "main": "index.php",
   "scripts": {
     "start": ""
-      },
+  },
   "author": "gpuppy",
   "license": "ISC",
   "dependencies": {
+    "@coreui/coreui": "^5.4.0",
+    "@coreui/react": "^5.7.0",
     "bootstrap": "^5.3.3"
   },
-  "devDependencies": {
-   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gpuppy/arcadia1.git"

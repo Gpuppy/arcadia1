@@ -174,6 +174,7 @@ $db = new DbConnection();
         function reset_background(){
 
             for(var count = 1; count <= 5; count++){
+
                 $('#submit_start_'+count).addClass('star-light');
 
                 $('#submit_star_'+count).removeClass('text-warning');
@@ -182,7 +183,37 @@ $db = new DbConnection();
 
         $(document).on('mouseleave','.submit_start', function(){
             reset_background();
-        })
+        });
+
+        $(document).on('click', '.submit_star', function(){
+
+            rating_data = $(this).data('rating');
+        });
+
+        $('#save_review').click(function(){
+
+            var user_name = $('#user_name').val();
+
+            var user_review = $('#user_review').val();
+
+            if(user_name === '' || user_review === '') {
+                alert('Merci de renseigner un avis');
+                return false;
+            }
+            else{
+                $.ajax({
+                    url:"submit_rating.php",
+                    method:"POST",
+                    data:{rating_data:rating_data, user_name:user_name,user_review:user_review},
+                    success:function(data)
+                    {
+                        $('#review_modal').modal('hide');
+                        alert(data);
+                    }
+                })
+            }
+
+        });
     });
 
 

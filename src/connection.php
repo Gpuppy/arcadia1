@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }else{
                 unset($user['password']);
                 $_SESSION['user'] = $user;
-                header('Location: admin.php');
+                header('Location:../src/admin/admin.php');
             }
         }
 

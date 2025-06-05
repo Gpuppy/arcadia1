@@ -2,8 +2,8 @@
 
 use App\Config\DbConnection;
 
-require_once __DIR__ . '/../src/Config/DbConnection.php';
-require_once "../templates/header.php";
+require_once __DIR__ . '/../Config/DbConnection.php';
+require_once "../../templates/header.php";
 
 
 $db = new DbConnection();
@@ -51,33 +51,29 @@ JOIN orders ON users.id = orders.user_id;*/
                <td><?=$animal['state']?></td>
                <td><?=$animal['image']?></td>
                <td>
-                   <a class='btn btn-primary btn-sm' href='/edit.php?id=<?= $animal['animal_id'] ?>'>Edit</a>
-                   <a class='btn btn-danger btn-sm' href='/delete.php?id=<?= $animal['animal_id'] ?>'>Delete</a>
+                   <a class='btn btn-primary btn-sm' href='edit.php?id=<?= $animal['animal_id']?>'>Edit</a>
+                   <a class='btn btn-danger btn-sm' href='delete.php?id=<?= $animal['animal_id']?>'>Delete</a>
                </td>
            </tr>
        <?php endforeach; ?>
-                    <?php
-
-                    $imagePath = 'uploads/' . $animal['image'];
-                    if (file_exists($imagePath)) {
-
-                        echo "
+                    
                        
-                        </tbody>
+                       </tbody>
                         </table>
-                        ";
-
-                    }
+                        
 
 
-                    ?>
+
 
     </div>
+
 </div>
     </body>
 
+<a class="btn btn-success" href="add_animal.php">Ajouter un animal</a>
+ 
 
-<a class="btn btn-success" href="/add_animal.php">Ajouter un animal</a>
+    
 
 <?php
-require_once "../templates/footer.php";
+require_once "../../templates/footer.php";

@@ -132,7 +132,7 @@ $db = new DbConnection();
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
                 </h4>
                 <div class="form-group">
-                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Nom" />
+                    <input type="text" name="user_name" id="name" class="form-control" placeholder="Nom" />
                 </div>
                 <div class="form-group">
                     <input type="text" name="email" id="email" class="form-control" placeholder="Email" />
@@ -192,19 +192,21 @@ $db = new DbConnection();
 
         $('#save_review').click(function(){
 
-            var user_name = $('#user_name').val();
+            var name = $('#name').val();
+
+            var email = $('#email').val();
 
             var user_review = $('#user_review').val();
 
-            if(user_name === '' || user_review === '') {
+            if(name === '' || user_review === '') {
                 alert('Merci de renseigner un avis');
                 return false;
             }
             else{
                 $.ajax({
-                    url:"submit_rating.php",
+                    url:"/src/reviews/form_validation_rating.php",
                     method:"POST",
-                    data:{rating_data:rating_data, user_name:user_name,user_review:user_review},
+                    data:{rating_data:rating_data, name:name, email:email, user_review:user_review},
                     success:function(data)
                     {
                         $('#review_modal').modal('hide');
@@ -214,6 +216,17 @@ $db = new DbConnection();
             }
 
         });
+        function load_rating_data({
+            url:"form_validation_rating.php",
+            method: "POST",
+            data:{action: load_data},
+            dataType:"JSON",
+            success:function(data)
+        {
+                //
+        }
+
+        })
     });
 
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
-include 'Src/Config/DbConnection.php';
+include '../../Src/Config/DbConnection.php';
 
 use App\Config\DbConnection;
 
@@ -10,7 +10,7 @@ $db = new DbConnection();
 
 $title = 'Delete animal';
 
-require_once 'templates/header.php';
+require_once '../../templates/header.php';
 
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
@@ -122,4 +122,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 <?php
-require_once 'templates/footer.php';
+require_once '../../templates/footer.php';

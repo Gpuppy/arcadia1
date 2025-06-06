@@ -2,49 +2,6 @@
 
 namespace App\Config;
 
-//use Dotenv\Dotenv;
-
-//$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-//$dotenv->load();
-
-//var_dump($_ENV);
-
-/*$jawsdbhost = $_ENV['JAWSDB_HOST'];
-$jawsdbname = $_ENV['JAWSDB_NAME'];
-$jawsdbuser = $_ENV['JAWSDB_USER'];
-$jawsdbpassword = $_ENV['JAWSDB_PASSWORD'];
-
-//Get Heroku JawsDB connection information
-$url = parse_url(getenv("JAWSDB_DATABASE_URL"));
-$jawsdb_server = $url["host"];
-$jawsdb_username = $url["user"];
-$jawsdb_password = $url["pass"];
-$jawsdb_db = ltrim($url["path"],'/');
-
-$active_group = 'default';
-$query_builder = TRUE;
-// Connect to DB
-
-$conn = mysqli_connect($jawsdb_server, $jawsdb_username, $jawsdb_password, $jawsdb_db);
-
-if(!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}*/
-
-//Get Heroku ClearDB connection information
-/*$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$cleardb_server = $cleardb_url["host"];
-$cleardb_username = $cleardb_url["user"];
-$cleardb_password = $cleardb_url["pass"];
-$cleardb_db = substr($cleardb_url["path"],1);
-$active_group = 'default';
-$query_builder = TRUE;
-// Connect to DB
-$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-?>*/
-
-
-
 
 class DbConnection
 {

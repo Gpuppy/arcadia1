@@ -13,13 +13,15 @@ class DbConnection
             return self::$pdo;
         }
 
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
 
-        $host = "nba02whlntki5w2p.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-        $user = "tvr7jf7pjfcxahch";
-        $password = "k4jwc1moepkum601";
-        $dbname = "y0dtxwzjt63cmuoj";
-        $port = "3306";
-
+        $host = $_ENV['DB_HOST'];
+        $user = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASSWORD'];
+        $dbname = $_ENV['DB_NAME'];
+        $port = $_ENV['DB_PORT'];
+        
         // Create DSN (Data Source Name) for PDO
         $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
 

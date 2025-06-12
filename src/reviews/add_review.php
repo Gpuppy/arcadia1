@@ -216,17 +216,22 @@ $db = new DbConnection();
             }
 
         });
-        function load_rating_data({
-            url:"form_validation_rating.php",
-            method: "POST",
-            data:{action: load_data},
-            dataType:"JSON",
-            success:function(data)
-        {
-                //
-        }
 
-        })
+        load_rating_data();
+
+        function load_rating_data() {
+            $.ajax({
+                url: "form_validation_rating.php",
+                method: "POST",
+                data: {action: load_data},
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('#average_rating').text(data.average_rating);
+                }
+
+            })
+        }
     });
 
 

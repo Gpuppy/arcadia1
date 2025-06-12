@@ -2,6 +2,8 @@
 
 namespace App\Config;
 
+require_once __DIR__ . '/../../vendor/autoload.php'; // adjust path as needed
+
 use Dotenv\Dotenv;
 
 

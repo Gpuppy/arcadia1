@@ -85,8 +85,21 @@ if(isset($_POST["action"]))
 
         $total_user_rating = $total_user_rating + $row["user_rating"];
     }
+
     $average_rating = $total_user_rating/ $total_review;
 
+    $output = array(
+        'average_rating' => number_format($average_rating, 1),
+        'total_review' => $total_review,
+        'five_star_review' =>  $five_star_review,
+        'four_star_review' =>  $four_star_review,
+        'three_star_review' =>  $three_star_review,
+        'two_star_review' =>  $two_star_review,
+        'one_star_review' =>  $one_star_review,
+        'review_data' =>  $review_content
+    );
+
+    echo json_encode($output);
 }
 
 ?>

@@ -6,7 +6,6 @@ include '../../Src/Config/DbConnection.php';
 
 use App\Config\DbConnection;
 
-
 $db = new DbConnection();
 
 $title = 'Edit animal';
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Ensure $id is set (e.g., via $_POST or $_GET)
-        if (empty($_POST['id']) ||  empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race_id']) || empty($_POST['description'])/*|| empty($_POST['image'])*/) {
+        if (empty($_POST['id']) ||  empty($_POST['name']) || empty($_POST['state']) || empty($_POST['race_id']) || empty($_POST['description']) /*|| empty($_POST['image'])*/) {
                         throw new Exception('All fields are required.');
         }
 
@@ -58,9 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Process uploaded image if provided
         if ($image) {
-            $uploadDir = __DIR__ . '/src/uploads/';
+            $uploadDir = __DIR__ . '/../uploads/';
             $uniqueFileName = uniqid() . '-' . basename($image);
             $targetFile = $uploadDir . $uniqueFileName;
+
+            if (!is_uploaded_file($_FILES['image']['tmp_name'])) {
+                throw new Exception('No valid uploaded file found.');
+            }
+
 
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
                 throw new Exception('Failed to upload image.');
@@ -94,9 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query->execute();
 
 
-
     $_SESSION['message_update_animal'] = 'Animal mis a jour.';
-    header('Location: /../animal.php');
+    header('Location: /src/admin/animal_list.php');
     exit;
 
 } catch (Exception $e) {

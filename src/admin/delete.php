@@ -15,7 +15,6 @@ require_once '../../templates/header.php';
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 
-
 $query = DbConnection::getPdo()->prepare(
     'SELECT animal.id, animal.name, animal.state, animal.race_id,animal.description, animal.image, race.abel AS race_abel
         FROM animal
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $_SESSION['message_deleted_animal'] = 'Animal effacé.';
-        header('Location: /src/animal_list.php');
+        header('Location: /src/admin/animal_list.php');
         exit;
 
     } catch (Exception $e) {

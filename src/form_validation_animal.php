@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
 
         // Redirection ou message de succès
         $_SESSION['message_add_animal'] = 'Animal bien ajouté.';
-        header('Location: animal_list.php');
+        header('Location: admin/animal_list.php');
         exit;
 
     } catch (Exception $e) {
@@ -67,42 +67,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
 } else {
     echo 'Impossible d\'arriver sur cette page en GET.';
 
-    //Update
-    /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        try {
-            // Ensure $id is set (e.g., via $_POST or $_GET)
-            if (empty($_POST['id'])) {
-                throw new Exception('ID is required for updating.');
-            }
 
-            $id = $_GET['id']; // Use proper validation
-
-            $query = DbConnection::getPdo()->prepare(
-                'UPDATE animal SET name= :name, state= :state, race_id = :race, image = :image WHERE id= :id '
-            );
-
-            $query->bindParam(':name', $_GET['name'], PDO::PARAM_STR);
-            $query->bindParam(':state', $_GET['state'], PDO::PARAM_STR);
-            $query->bindParam(':race', $_GET['race'], PDO::PARAM_INT);
-            $query->bindParam(':image', $_GET['$uniqueFileName'], PDO::PARAM_STR);
-            $query->bindParam(':id', $id, PDO::PARAM_INT);
-
-            $query->execute();
-
-            $_SESSION['message_update_animal'] = 'Animal mis a jour.';
-            header('Location : animal.php');
-            exit;
-
-        } catch (Exception $e) {
-            error_log('Error updating animal: ' . $e->getMessage());
-            echo 'Erreur : ' . $e->getMessage();
-        }
-
-    }*/
-
-    //Delete
-    /*$animai_id = $_GET['$animal_id'];
-    $query = DbConnection::getPdo()->prepare('DELETE FROM animal where id = '.$animal_id);
-    $animal = $query->fetch(PDO::FETCH_ASSOC);
-    header('Location:animal.php');*/
 }

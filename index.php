@@ -15,12 +15,6 @@ if (file_exists(__DIR__ . '/.env')) {
 }
 
 
-//var_dump(getenv('APP_ENV'));
-
-
-//require_once 'animal.php';
-
-
 $db = new DbConnection();
 
 
@@ -28,22 +22,7 @@ $query = DbConnection::getPdo()->query('SELECT * FROM animal');
 $animals = $query->fetchAll(PDO::FETCH_ASSOC);
 //$animal = $query->fetch(PDO::FETCH_OBJ);
 $race = $query->fetchAll(PDO::FETCH_ASSOC);
-//$query = $pdo->query("SELECT * FROM user");
-//$users = $query->fetchAll(PDO::FETCH_ASSOC);
 
-//$animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//print_r($animals);
-//$stmt->closeCursor();
-//print_r($animals);
-//$infos = json_encode($animals);
-
-//var_dump($animals);
-
-
-//session_start();
-
-
-//require_once 'Controller/HomeController.php';
 require "templates/header.php";
 ?>
 <?php
@@ -79,13 +58,13 @@ $user = '';
         <div id="carouselExampleAutoplaying" class="carousel slide row text-center" data-bs-ride="carousel">
             <div class="carousel-inner center">
                 <div class="carousel-item active ">
-                    <img src="Images/ostrich-8579501_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/ostrich-8579501_1280.jpg" class="img-fluid " alt="ostrich">
                 </div>
                 <div class="carousel-item">
-                    <img src="Images/penguin-6905568_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/476205670_637012462100281_1543269053820869539_n.jpg" class="img-fluid " alt="peroquet">
                 </div>
                 <div class="carousel-item">
-                    <img src="Images/zebras-4258909_1280.jpg" class="img-fluid " alt="...">
+                    <img src="Images/zebras-4258909_1280.jpg" class="img-fluid " alt="zebra">
                 </div>
             </div>
 
@@ -195,7 +174,18 @@ $user = '';
                         @media (min-width: 768px) {
                             .testimonial-card {
                                 width: calc(50% - 30px);
+
                             }
+                            /*.carousel-inner center {
+                                margin:0!important;
+                                padding:0!important;
+
+                            }
+
+                            .carousel-item img{
+                                margin:0!important;
+                                padding:0!important;
+                            }*/
                         }
 
                         a {
@@ -206,6 +196,8 @@ $user = '';
                         a:hover {
                             text-decoration: underline;
                         }
+
+
                     </style>
                 </head>
                 <body>
@@ -237,10 +229,12 @@ $user = '';
 
 
             .carousel-item img{
-                width: 70%; /* Set to your desired width */
-                height: 500px; /* Set to your desired height */
+                width: 100%; /* Set to your desired width */
+                height: 600px; /* Set to your desired height */
                 object-fit: cover; /* This will crop the image to fit */
+                /*max-height:400px;*/
                 data-bs-interval="0.1";
+
             }
 
         </style>
